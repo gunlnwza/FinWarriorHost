@@ -60,6 +60,7 @@ function openCardModal(src) {
   const img = document.getElementById('cardRevealImg');
 
   img.src = src;
+  document.querySelector('#cardFlipInner .card-back-face img').src = DECKS[lastDeckId].backImagePath;
 
   flipInner.classList.remove('revealed');
   modal.classList.add('active');
