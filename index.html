@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Game Host Controller</title>
+<title>The Fin Warrior</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -12,37 +12,28 @@
 <!-- VISIBLE -->
 <!---------------------------------------------------------------------------->
 <div class="table">
-
-  <!-- CARD DECK -->
-  <div class="card-zone">
-    <!-- <span class="zone-label">Daily Alert</span> -->
-    <div class="deck-stack" id="deckStack-daily" onclick="drawCard('daily')">
-      <div class="card-back">
-        <img src="assets/cards/daily_alert/back.png" alt="">
-      </div>
+  <!-- DAILY ALERT DECK -->
+  <div class="deck-stack" id="deckStack-daily" onclick="drawCard('daily')">
+    <div class="card-back">
+      <img src="assets/cards/daily_alert/back.png" alt="">
     </div>
   </div>
 
   <!-- ECONOMICS EVENT DECK -->
-  <div class="card-zone">
-    <!-- <span class="zone-label">Economics Event</span> -->
-    <div class="deck-stack" id="deckStack-economics" onclick="drawCard('economics')">
-      <div class="card-back">
-        <img src="assets/cards/economics_event/back.png" alt="">
-      </div>
+  <div class="deck-stack" id="deckStack-economics" onclick="drawCard('economics')">
+    <div class="card-back">
+      <img src="assets/cards/economics_event/back.png" alt="">
     </div>
   </div>
 
   <!-- DICE -->
   <div class="dice-zone">
-    <div class="dice-scene" onclick="rollDice()">
+    <div class="dice-scene" id="rollBtn" onclick="rollDice()">
       <div class="die" id="die">
         <img src="assets/dice/one.png" alt="">
       </div>
     </div>
-    <button class="roll-btn" id="rollBtn" onclick="rollDice()">Roll</button>
   </div>
-
 </div>
 
 <!---------------------------------------------------------------------------->
@@ -69,5 +60,6 @@
 <script src="deck.js"></script>
 <script src="dice.js"></script>
 <script src="script.js"></script>
+
 </body>
 </html>
