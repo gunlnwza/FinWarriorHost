@@ -1,26 +1,32 @@
 // ── STATE ──
-let deck = [];          // array of image src strings (data URLs)
 let currentCardIdx = 0;
 let isAnimating = false;
 
-// ── CARD LOADING ──
-function loadCards(input) {
-  const files = Array.from(input.files);
-  deck = [];
-  let loaded = 0;
-  files.forEach((file, i) => {
-    const reader = new FileReader();
-    reader.onload = e => {
-      deck[i] = e.target.result;
-      loaded++;
-      if (loaded === files.length) {
-        currentCardIdx = 0;
-        updateDeckCount();
-      }
-    };
-    reader.readAsDataURL(file);
-  });
+const DAILY_ALERT_CARDS = [
+  'assets/cards/daily_alert/air_pollution.png',
+  'assets/cards/daily_alert/dividend_agro.png',
+  'assets/cards/daily_alert/dividend_consump.png',
+  'assets/cards/daily_alert/dividend_healthcare.png',
+  'assets/cards/daily_alert/dividend_resource.png',
+  'assets/cards/daily_alert/dividend_tech.png',
+  'assets/cards/daily_alert/flu_spread.png',
+  'assets/cards/daily_alert/price_03.png',
+  'assets/cards/daily_alert/prize_01.png',
+  'assets/cards/daily_alert/prize_02.png',
+  'assets/cards/daily_alert/prize_04.png',
+  'assets/cards/daily_alert/prize_05.png',
+  'assets/cards/daily_alert/trade_asset.png',
+];
+
+function shuffle(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
 }
+
+let deck = shuffle([...DAILY_ALERT_CARDS]);
 
 function updateDeckCount() {
   const remaining = deck.length - currentCardIdx;
@@ -31,11 +37,6 @@ function updateDeckCount() {
 // ── DRAW CARD ──
 function drawCard() {
   if (isAnimating) return;
-  if (deck.length === 0) {
-    // Demo mode: show placeholder
-    openCardModal(null);
-    return;
-  }
   if (currentCardIdx >= deck.length) {
     document.getElementById('deckCount').textContent = 'Deck empty';
     return;
@@ -51,8 +52,7 @@ function openCardModal(src) {
   const flipInner = document.getElementById('cardFlipInner');
   const img = document.getElementById('cardRevealImg');
 
-  if (src) img.src = src;
-  else img.src = ''; // demo — show back only
+  img.src = src;
 
   // Reset flip state
   flipInner.classList.remove('revealed');
