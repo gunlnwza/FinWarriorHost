@@ -1,22 +1,5 @@
 // ── STATE ──
-let currentCardIdx = 0;
 let isAnimating = false;
-
-const DAILY_ALERT_CARDS = [
-  'assets/cards/daily_alert/air_pollution.png',
-  'assets/cards/daily_alert/dividend_agro.png',
-  'assets/cards/daily_alert/dividend_consump.png',
-  'assets/cards/daily_alert/dividend_healthcare.png',
-  'assets/cards/daily_alert/dividend_resource.png',
-  'assets/cards/daily_alert/dividend_tech.png',
-  'assets/cards/daily_alert/flu_spread.png',
-  'assets/cards/daily_alert/price_03.png',
-  'assets/cards/daily_alert/prize_01.png',
-  'assets/cards/daily_alert/prize_02.png',
-  'assets/cards/daily_alert/prize_04.png',
-  'assets/cards/daily_alert/prize_05.png',
-  'assets/cards/daily_alert/trade_asset.png',
-];
 
 function shuffle(arr) {
   for (let i = arr.length - 1; i > 0; i--) {
@@ -26,24 +9,63 @@ function shuffle(arr) {
   return arr;
 }
 
-let deck = shuffle([...DAILY_ALERT_CARDS]);
+const DECKS = {
+  daily: {
+    cards: shuffle([
+      'assets/cards/daily_alert/air_pollution.png',
+      'assets/cards/daily_alert/dividend_agro.png',
+      'assets/cards/daily_alert/dividend_consump.png',
+      'assets/cards/daily_alert/dividend_healthcare.png',
+      'assets/cards/daily_alert/dividend_resource.png',
+      'assets/cards/daily_alert/dividend_tech.png',
+      'assets/cards/daily_alert/flu_spread.png',
+      'assets/cards/daily_alert/price_03.png',
+      'assets/cards/daily_alert/prize_01.png',
+      'assets/cards/daily_alert/prize_02.png',
+      'assets/cards/daily_alert/prize_04.png',
+      'assets/cards/daily_alert/prize_05.png',
+      'assets/cards/daily_alert/trade_asset.png',
+    ]),
+    idx: 0,
+  },
+  economics: {
+    cards: shuffle([
+      'assets/cards/economics_event/development_in_ai.png',
+      'assets/cards/economics_event/global_inflation.png',
+      'assets/cards/economics_event/higher_non_farm_unemploy.png',
+      'assets/cards/economics_event/higher_oil_price.png',
+      'assets/cards/economics_event/higher_vat.png',
+      'assets/cards/economics_event/lower_fed_policy_rate.png',
+      'assets/cards/economics_event/lower_global_agri_price.png',
+      'assets/cards/economics_event/major_flood.png',
+      'assets/cards/economics_event/political_problem.png',
+      'assets/cards/economics_event/restrict_food_export.png',
+      'assets/cards/economics_event/stronger_usd.png',
+      'assets/cards/economics_event/support_alternative_energy.png',
+      'assets/cards/economics_event/trade_war.png',
+    ]),
+    idx: 0,
+  },
+};
 
-function updateDeckCount() {
-  const remaining = deck.length - currentCardIdx;
-  document.getElementById('deckCount').textContent =
+function updateDeckCount(deckId) {
+  const d = DECKS[deckId];
+  const remaining = d.cards.length - d.idx;
+  document.getElementById(`deckCount-${deckId}`).textContent =
     remaining > 0 ? `${remaining} card${remaining !== 1 ? 's' : ''} remaining` : 'Deck empty';
 }
 
 // ── DRAW CARD ──
-function drawCard() {
+function drawCard(deckId) {
   if (isAnimating) return;
-  if (currentCardIdx >= deck.length) {
-    document.getElementById('deckCount').textContent = 'Deck empty';
+  const d = DECKS[deckId];
+  if (d.idx >= d.cards.length) {
+    document.getElementById(`deckCount-${deckId}`).textContent = 'Deck empty';
     return;
   }
-  openCardModal(deck[currentCardIdx]);
-  currentCardIdx++;
-  updateDeckCount();
+  openCardModal(d.cards[d.idx]);
+  d.idx++;
+  updateDeckCount(deckId);
 }
 
 function openCardModal(src) {
@@ -183,5 +205,5 @@ function rollDice() {
   }, 600);
 }
 
-// Init count
-updateDeckCount();
+// Init counts
+Object.keys(DECKS).forEach(updateDeckCount);
