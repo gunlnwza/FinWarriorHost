@@ -11,20 +11,21 @@ function showFace(face) {
   document.getElementById('die').innerHTML = `<img src="${face.src}" alt="">`;
 }
 
+function randomFace() {
+  return DICE_FACES[Math.floor(Math.random() * DICE_FACES.length)]
+}
+
 function rollDice() {
   if (isAnimating) return;
   isAnimating = true;
 
   const die = document.getElementById('die');
   const btn = document.getElementById('rollBtn');
-  const result = DICE_FACES[Math.floor(Math.random() * DICE_FACES.length)];
+  const result = randomFace();
 
   btn.disabled = true;
 
-  const cycle = setInterval(
-    () => showFace(DICE_FACES[Math.floor(Math.random() * DICE_FACES.length)]),
-    80
-  );
+  const cycle = setInterval(() => showFace(randomFace()), 80);
 
   die.classList.remove('rolling');
   void die.offsetWidth;

@@ -36,3 +36,41 @@ class CardDeck {
     return this.cards[this.cursor];
   }
 }
+
+
+// ── STATE ──
+let isAnimating = false;
+let lastDeckId = null;
+
+const DECKS = {
+  daily: new CardDeck('daily', 'Daily Alert', 'assets/cards/daily_alert/back.png', [
+    new Card('air_pollution',       'daily', 'assets/cards/daily_alert/air_pollution.png'),
+    new Card('dividend_agro',       'daily', 'assets/cards/daily_alert/dividend_agro.png'),
+    new Card('dividend_consump',    'daily', 'assets/cards/daily_alert/dividend_consump.png'),
+    new Card('dividend_healthcare', 'daily', 'assets/cards/daily_alert/dividend_healthcare.png'),
+    new Card('dividend_resource',   'daily', 'assets/cards/daily_alert/dividend_resource.png'),
+    new Card('dividend_tech',       'daily', 'assets/cards/daily_alert/dividend_tech.png'),
+    new Card('flu_spread',          'daily', 'assets/cards/daily_alert/flu_spread.png'),
+    new Card('price_03',            'daily', 'assets/cards/daily_alert/price_03.png'),
+    new Card('prize_01',            'daily', 'assets/cards/daily_alert/prize_01.png'),
+    new Card('prize_02',            'daily', 'assets/cards/daily_alert/prize_02.png'),
+    new Card('prize_04',            'daily', 'assets/cards/daily_alert/prize_04.png'),
+    new Card('prize_05',            'daily', 'assets/cards/daily_alert/prize_05.png'),
+    new Card('trade_asset',         'daily', 'assets/cards/daily_alert/trade_asset.png'),
+  ]),
+  economics: new CardDeck('economics', 'Economics Event', 'assets/cards/economics_event/back.png', [
+    new Card('development_in_ai',          'economics', 'assets/cards/economics_event/development_in_ai.png'),
+    new Card('global_inflation',           'economics', 'assets/cards/economics_event/global_inflation.png'),
+    new Card('higher_non_farm_unemploy',   'economics', 'assets/cards/economics_event/higher_non_farm_unemploy.png'),
+    new Card('higher_oil_price',           'economics', 'assets/cards/economics_event/higher_oil_price.png'),
+    new Card('higher_vat',                 'economics', 'assets/cards/economics_event/higher_vat.png'),
+    new Card('lower_fed_policy_rate',      'economics', 'assets/cards/economics_event/lower_fed_policy_rate.png'),
+    new Card('lower_global_agri_price',    'economics', 'assets/cards/economics_event/lower_global_agri_price.png'),
+    new Card('major_flood',                'economics', 'assets/cards/economics_event/major_flood.png'),
+    new Card('political_problem',          'economics', 'assets/cards/economics_event/political_problem.png'),
+    new Card('restrict_food_export',       'economics', 'assets/cards/economics_event/restrict_food_export.png'),
+    new Card('stronger_usd',               'economics', 'assets/cards/economics_event/stronger_usd.png'),
+    new Card('support_alternative_energy', 'economics', 'assets/cards/economics_event/support_alternative_energy.png'),
+    new Card('trade_war',                  'economics', 'assets/cards/economics_event/trade_war.png'),
+  ]),
+};
