@@ -28,6 +28,7 @@ function openCardModal(src) {
 
   flipInner.classList.remove('revealed');
   modal.classList.toggle('daily-alert', lastDeckId === 'daily');
+  modal.classList.toggle('economics-alert', lastDeckId === 'economics');
   modal.classList.add('active');
 
   setTimeout(() => {

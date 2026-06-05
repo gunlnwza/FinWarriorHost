@@ -222,6 +222,10 @@ h1 {
   border: 15px solid #c14444;
 }
 
+.modal.economics-alert .card-front-face {
+  border: 15px solid #ffffff;
+}
+
 .card-back-face {
   background: var(--bg);
 }
