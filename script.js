@@ -27,6 +27,7 @@ function openCardModal(src) {
   document.querySelector('#cardFlipInner .card-back-face img').src = DECKS[lastDeckId].backImagePath;
 
   flipInner.classList.remove('revealed');
+  modal.classList.toggle('daily-alert', lastDeckId === 'daily');
   modal.classList.add('active');
 
   setTimeout(() => {

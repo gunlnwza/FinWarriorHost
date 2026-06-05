@@ -218,6 +218,11 @@ h1 {
   border: 1.5px solid var(--border-strong);
 }
 
+.modal.daily-alert .card-front-face,
+.modal.daily-alert .card-back-face {
+  border: 15px solid #c14444;
+}
+
 .card-back-face {
   background: var(--bg);
 }
