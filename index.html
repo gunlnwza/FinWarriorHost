@@ -11,37 +11,30 @@
 <!---------------------------------------------------------------------------->
 <!-- VISIBLE -->
 <!---------------------------------------------------------------------------->
-<h1>Game Host</h1>
-
 <div class="table">
 
   <!-- CARD DECK -->
   <div class="card-zone">
-    <span class="zone-label">Card Deck</span>
+    <!-- <span class="zone-label">Daily Alert</span> -->
     <div class="deck-stack" id="deckStack-daily" onclick="drawCard('daily')">
       <div class="card-back">
         <img src="assets/cards/daily_alert/back.png" alt="">
       </div>
     </div>
-    <div class="deck-count" id="deckCount-daily">— cards</div>
   </div>
 
   <!-- ECONOMICS EVENT DECK -->
   <div class="card-zone">
-    <span class="zone-label">Economics Event</span>
+    <!-- <span class="zone-label">Economics Event</span> -->
     <div class="deck-stack" id="deckStack-economics" onclick="drawCard('economics')">
       <div class="card-back">
         <img src="assets/cards/economics_event/back.png" alt="">
       </div>
     </div>
-    <div class="deck-count" id="deckCount-economics">— cards</div>
   </div>
-
-  <div class="divider"></div>
 
   <!-- DICE -->
   <div class="dice-zone">
-    <span class="zone-label">Dice</span>
     <div class="dice-scene" onclick="rollDice()">
       <div class="die" id="die">
         <!-- single visible face; pips swapped via JS, or replaced by img on load -->
