@@ -1,0 +1,422 @@
+:root {
+  --felt: #1a3a2a;
+  --felt-light: #1f4432;
+  --felt-dark: #0f2218;
+  --gold: #c9a84c;
+  --gold-light: #e8c96a;
+  --gold-dark: #8a6a1f;
+  --cream: #f5ecd7;
+  --shadow-deep: rgba(0,0,0,0.7);
+  --shadow-card: rgba(0,0,0,0.5);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background-color: var(--felt-dark);
+  background-image:
+    radial-gradient(ellipse at center, var(--felt-light) 0%, var(--felt-dark) 70%),
+    url("data:image/svg+xml,%3Csvg width='4' height='4' viewBox='0 0 4 4' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 3L3 1' stroke='%23ffffff' stroke-width='0.3' stroke-opacity='0.04'/%3E%3C/svg%3E");
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Crimson Pro', serif;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Vignette */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.6) 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+h1 {
+  font-family: 'Cinzel Decorative', serif;
+  color: var(--gold);
+  font-size: clamp(1rem, 2.5vw, 1.8rem);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  margin-bottom: 3rem;
+  text-shadow: 0 0 30px rgba(201,168,76,0.4);
+  position: relative;
+  z-index: 1;
+}
+
+h1::before, h1::after {
+  content: '✦';
+  margin: 0 1rem;
+  opacity: 0.6;
+  font-size: 0.7em;
+}
+
+.table {
+  display: flex;
+  gap: clamp(3rem, 8vw, 8rem);
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── CARD DECK ── */
+.card-zone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.zone-label {
+  font-family: 'Cinzel Decorative', serif;
+  color: var(--gold);
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+.deck-stack {
+  position: relative;
+  width: 160px;
+  height: 224px;
+  cursor: pointer;
+}
+
+/* Stack shadow cards */
+.deck-stack::before,
+.deck-stack::after {
+  content: '';
+  position: absolute;
+  border-radius: 10px;
+  background: var(--gold-dark);
+  border: 1px solid rgba(201,168,76,0.2);
+}
+.deck-stack::before {
+  inset: 0;
+  transform: translate(6px, 6px);
+  opacity: 0.5;
+}
+.deck-stack::after {
+  inset: 0;
+  transform: translate(3px, 3px);
+  opacity: 0.7;
+}
+
+.card-back {
+  position: absolute;
+  inset: 0;
+  border-radius: 10px;
+  background:
+    linear-gradient(135deg, #1a0a00 0%, #2d1200 50%, #1a0a00 100%);
+  border: 2px solid var(--gold);
+  box-shadow:
+    0 8px 32px var(--shadow-deep),
+    inset 0 0 0 6px rgba(201,168,76,0.08),
+    inset 0 0 0 7px rgba(201,168,76,0.15);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  overflow: hidden;
+}
+
+.card-back::before {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  border: 1px solid rgba(201,168,76,0.3);
+  border-radius: 6px;
+}
+
+.card-back-pattern {
+  width: 80px;
+  height: 80px;
+  opacity: 0.15;
+  background-image: repeating-linear-gradient(
+    45deg,
+    var(--gold) 0, var(--gold) 1px,
+    transparent 0, transparent 50%
+  );
+  background-size: 10px 10px;
+  border-radius: 4px;
+}
+
+.deck-stack:hover .card-back {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px var(--shadow-deep), 0 0 20px rgba(201,168,76,0.15);
+}
+
+.deck-stack:active .card-back { transform: translateY(-2px); }
+
+.deck-count {
+  font-family: 'Cinzel Decorative', serif;
+  color: var(--gold);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  opacity: 0.8;
+}
+
+/* ── DICE ── */
+.dice-zone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.dice-scene {
+  width: 140px;
+  height: 140px;
+  cursor: pointer;
+}
+
+.die {
+  width: 100%;
+  height: 100%;
+  border-radius: 18px;
+  background: #f8f0e0;
+  border: 2px solid rgba(255,255,255,0.15);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.5), inset 0 2px 6px rgba(255,255,255,0.4);
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  transition: transform 0.1s ease;
+}
+
+.die img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.pips {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  padding: 18px;
+}
+
+/* quick shake + settle while "rolling" */
+.die.rolling { animation: diceShake 0.6s ease-in-out; }
+
+@keyframes diceShake {
+  0%   { transform: rotate(0deg) scale(1); }
+  15%  { transform: rotate(-12deg) scale(1.05); }
+  30%  { transform: rotate(10deg) scale(0.97); }
+  45%  { transform: rotate(-8deg) scale(1.04); }
+  60%  { transform: rotate(6deg) scale(0.98); }
+  75%  { transform: rotate(-4deg) scale(1.02); }
+  100% { transform: rotate(0deg) scale(1); }
+}
+
+.pip {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #1a1a1a;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
+  justify-self: center;
+  align-self: center;
+}
+
+/* Face transforms */
+.face-1 { transform: translateZ(70px); }
+.face-2 { transform: rotateY(90deg) translateZ(70px); }
+.face-3 { transform: rotateY(-90deg) translateZ(70px); }
+.face-4 { transform: rotateX(90deg) translateZ(70px); }
+.face-5 { transform: rotateX(-90deg) translateZ(70px); }
+.face-6 { transform: rotateY(180deg) translateZ(70px); }
+
+.roll-btn {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  color: var(--felt-dark);
+  background: linear-gradient(135deg, var(--gold-light), var(--gold), var(--gold-dark));
+  border: none;
+  padding: 0.6rem 1.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+  text-transform: uppercase;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.4), 0 0 0 1px var(--gold-dark);
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.roll-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.5), 0 0 0 1px var(--gold-dark); }
+.roll-btn:active { transform: translateY(0); }
+.roll-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+/* ── MODAL OVERLAY ── */
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.modal.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.82);
+  backdrop-filter: blur(6px);
+}
+
+.modal-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+/* ── CARD MODAL ── */
+.card-modal-wrapper {
+  perspective: 1000px;
+}
+
+.card-flip-inner {
+  width: min(60vw, 340px);
+  height: min(84vw, 476px);
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.card-flip-inner.revealed {
+  transform: rotateY(180deg);
+}
+
+.card-front-face, .card-back-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.8), 0 0 0 1px var(--gold);
+}
+
+.card-back-face {
+  background: linear-gradient(135deg, #1a0a00, #2d1200, #1a0a00);
+  border: 2px solid var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-back-face::before {
+  content: '';
+  position: absolute;
+  inset: 10px;
+  border: 1px solid rgba(201,168,76,0.3);
+  border-radius: 10px;
+}
+
+.card-front-face {
+  transform: rotateY(180deg);
+  background: #fff;
+}
+
+.card-front-face img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Dismiss hint */
+.modal-hint {
+  font-family: 'Crimson Pro', serif;
+  font-style: italic;
+  color: rgba(201,168,76,0.6);
+  font-size: 0.9rem;
+  letter-spacing: 0.1em;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.9; }
+}
+
+/* ── CARD RETURN ANIMATION ── */
+.flying-card {
+  position: fixed;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #1a0a00, #2d1200);
+  border: 2px solid var(--gold);
+  pointer-events: none;
+  z-index: 200;
+  transform-origin: center center;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.7);
+}
+
+/* ── RESULT BADGE (dice) ── */
+.result-badge {
+  font-family: 'Cinzel Decorative', serif;
+  color: var(--gold);
+  font-size: clamp(1.2rem, 4vw, 2rem);
+  letter-spacing: 0.2em;
+  text-shadow: 0 0 20px rgba(201,168,76,0.6);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.4s ease 0.8s, transform 0.4s ease 0.8s;
+}
+
+.result-badge.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Upload helpers */
+.upload-zone {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 1rem;
+  z-index: 10;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.upload-btn {
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.75rem;
+  color: rgba(201,168,76,0.7);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(201,168,76,0.2);
+  padding: 0.4rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  letter-spacing: 0.1em;
+  transition: all 0.2s;
+}
+
+.upload-btn:hover {
+  background: rgba(201,168,76,0.1);
+  color: var(--gold);
+  border-color: rgba(201,168,76,0.5);
+}
+
+input[type=file] { display: none; }
+
+/* Divider line */
+.divider {
+  width: 1px;
+  height: 200px;
+  background: linear-gradient(to bottom, transparent, rgba(201,168,76,0.3), transparent);
+}
