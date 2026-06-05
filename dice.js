@@ -46,12 +46,11 @@ function rollDice() {
 
   const die = document.getElementById('die');
   const btn = document.getElementById('rollBtn');
-  const result = nextFace();
+  const result = randomFace();
 
   btn.disabled = true;
 
   const cycle = setInterval(() => showFace(randomFaceNoRepeat()), 100);
-  // const cycle = setInterval(() => showFace(nextFace()), 600);
 
   die.classList.remove('rolling');
   void die.offsetWidth;
