@@ -37,12 +37,10 @@
   <div class="dice-zone">
     <div class="dice-scene" onclick="rollDice()">
       <div class="die" id="die">
-        <!-- single visible face; pips swapped via JS, or replaced by img on load -->
-        <div class="pips" id="pips" style="place-items:center"><div class="pip"></div></div>
+        <img src="assets/dice/one.png" alt="">
       </div>
     </div>
     <button class="roll-btn" id="rollBtn" onclick="rollDice()">Roll</button>
-    <div class="result-badge" id="resultBadge"></div>
   </div>
 
 </div>
@@ -69,6 +67,7 @@
 </div>
 
 <script src="deck.js"></script>
+<script src="dice.js"></script>
 <script src="script.js"></script>
 </body>
 </html>
