@@ -4,54 +4,50 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Game Host Controller</title>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Crimson+Pro:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<h1>Game Host</h1>
-
+<!---------------------------------------------------------------------------->
+<!-- VISIBLE -->
+<!---------------------------------------------------------------------------->
 <div class="table">
 
   <!-- CARD DECK -->
   <div class="card-zone">
-    <span class="zone-label">Card Deck</span>
-    <div class="deck-stack" id="deckStack" onclick="drawCard()">
+    <!-- <span class="zone-label">Daily Alert</span> -->
+    <div class="deck-stack" id="deckStack-daily" onclick="drawCard('daily')">
       <div class="card-back">
-        <div class="card-back-pattern"></div>
+        <img src="assets/cards/daily_alert/back.png" alt="">
       </div>
     </div>
-    <div class="deck-count" id="deckCount">— cards</div>
   </div>
 
-  <!-- CARD DECK -->
+  <!-- ECONOMICS EVENT DECK -->
   <div class="card-zone">
-    <span class="zone-label">Card Deck</span>
-    <div class="deck-stack" id="deckStack" onclick="drawCard()">
+    <!-- <span class="zone-label">Economics Event</span> -->
+    <div class="deck-stack" id="deckStack-economics" onclick="drawCard('economics')">
       <div class="card-back">
-        <div class="card-back-pattern"></div>
+        <img src="assets/cards/economics_event/back.png" alt="">
       </div>
     </div>
-    <div class="deck-count" id="deckCount">— cards</div>
   </div>
-
-  <div class="divider"></div>
 
   <!-- DICE -->
   <div class="dice-zone">
-    <span class="zone-label">Dice</span>
     <div class="dice-scene" onclick="rollDice()">
       <div class="die" id="die">
-        <!-- single visible face; pips swapped via JS, or replaced by img on load -->
-        <div class="pips" id="pips" style="place-items:center"><div class="pip"></div></div>
+        <img src="assets/dice/one.png" alt="">
       </div>
     </div>
     <button class="roll-btn" id="rollBtn" onclick="rollDice()">Roll</button>
-    <div class="result-badge" id="resultBadge"></div>
   </div>
 
 </div>
 
+<!---------------------------------------------------------------------------->
+<!-- BACKGROUND -->
+<!---------------------------------------------------------------------------->
 <!-- CARD MODAL -->
 <div class="modal" id="cardModal">
   <div class="modal-backdrop" onclick="dismissCard()"></div>
@@ -59,7 +55,7 @@
     <div class="card-modal-wrapper">
       <div class="card-flip-inner" id="cardFlipInner">
         <div class="card-back-face">
-          <div class="card-back-pattern"></div>
+          <img src="assets/cards/daily_alert/back.png" alt="">
         </div>
         <div class="card-front-face">
           <img id="cardRevealImg" src="" alt="Card">
@@ -70,16 +66,8 @@
   </div>
 </div>
 
-
-<!-- Upload controls -->
-<div class="upload-zone">
-  <label class="upload-btn" for="uploadCards">⊕ Load Card Images</label>
-  <input type="file" id="uploadCards" accept="image/*" multiple onchange="loadCards(this)">
-
-  <label class="upload-btn" for="uploadDice">⊕ Load Dice Face Images (6)</label>
-  <input type="file" id="uploadDice" accept="image/*" multiple onchange="loadDice(this)">
-</div>
-
+<script src="deck.js"></script>
+<script src="dice.js"></script>
 <script src="script.js"></script>
 </body>
 </html>
