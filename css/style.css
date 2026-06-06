@@ -32,7 +32,7 @@ body {
 .deck-stack {
   position: relative;
   width: 160px;
-  height: 224px;
+  height: 235px;
   cursor: pointer;
 }
 
@@ -162,7 +162,7 @@ body {
 
 .card-flip-inner {
   width: min(60vw, 340px);
-  height: min(84vw, 476px);
+  height: min(84vw, 500px);
   position: relative;
   transform-style: preserve-3d;
   transition: transform 0.7s cubic-bezier(0.23, 1, 0.32, 1);
