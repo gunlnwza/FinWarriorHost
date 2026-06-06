@@ -125,12 +125,14 @@ body {
   justify-content: center;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.3s ease;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 .modal.active {
   opacity: 1;
   pointer-events: all;
+  visibility: visible;
 }
 
 .modal-backdrop {
