@@ -54,6 +54,7 @@ const DECKS = {
     new Card('prize_04',            'daily', 'assets/cards/daily_alert/prize_04.png'),
     new Card('prize_05',            'daily', 'assets/cards/daily_alert/prize_05.png'),
     new Card('trade_asset',         'daily', 'assets/cards/daily_alert/trade_asset.png'),
+    new Card('trade_asset',         'daily', 'assets/cards/daily_alert/trade_asset.png'),
   ]),
   economics: new CardDeck('economics', 'Economics Event', 'assets/cards/economics_event/back.png', [
     new Card('development_in_ai',          'economics', 'assets/cards/economics_event/development_in_ai.png'),
@@ -64,6 +65,7 @@ const DECKS = {
     new Card('lower_fed_policy_rate',      'economics', 'assets/cards/economics_event/lower_fed_policy_rate.png'),
     new Card('lower_global_agri_price',    'economics', 'assets/cards/economics_event/lower_global_agri_price.png'),
     new Card('major_flood',                'economics', 'assets/cards/economics_event/major_flood.png'),
+    new Card('political_problem',          'economics', 'assets/cards/economics_event/political_problem.png'),
     new Card('political_problem',          'economics', 'assets/cards/economics_event/political_problem.png'),
     new Card('restrict_food_export',       'economics', 'assets/cards/economics_event/restrict_food_export.png'),
     new Card('stronger_usd',               'economics', 'assets/cards/economics_event/stronger_usd.png'),
