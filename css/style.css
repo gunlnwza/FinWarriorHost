@@ -33,6 +33,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 5px;
 }
 
 .deck-stack {
@@ -84,7 +85,7 @@ body {
   background: none;
   border: none;
   color: var(--border);
-  font-size: 0.85rem;
+  font-size: 0.80rem;
   cursor: pointer;
   padding: 4px 8px;
   margin-top: 8px;
