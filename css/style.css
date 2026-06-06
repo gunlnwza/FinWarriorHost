@@ -162,8 +162,14 @@ body {
   cursor: pointer;
 }
 
-.dice-scene:has(.die.rolling) {
+.dice-scene:has(.die.rolling),
+.dice-scene.just-rolled {
   cursor: default;
+}
+
+.dice-scene:hover:not(.just-rolled) .die {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 28px var(--shadow-deep);
 }
 
 .die {

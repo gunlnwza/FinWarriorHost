@@ -21,9 +21,12 @@ function randomFace() {
   return DICE_FACES[Math.floor(Math.random() * DICE_FACES.length)];
 }
 
+rollBtn.addEventListener('mouseleave', () => rollBtn.classList.remove('just-rolled'));
+
 function rollDice() {
-  if (isAnimating) return;
+  if (isAnimating || rollBtn.classList.contains('just-rolled')) return;
   isAnimating = true;
+  rollBtn.classList.add('just-rolled');
 
   const result = randomFace();
   rollBtn.disabled = true;
