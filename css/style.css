@@ -87,6 +87,10 @@ body {
   cursor: pointer;
 }
 
+.dice-scene:has(.die.rolling) {
+  cursor: default;
+}
+
 .die {
   width: 100%;
   height: 100%;
