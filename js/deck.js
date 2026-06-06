@@ -77,20 +77,12 @@ const DECKS = {
 
 Object.values(DECKS).forEach(deck => deck.shuffle());
 
-function updateDeckCount(deckId) {
-  const deck = DECKS[deckId];
-  const remaining = deck.cards.length - deck.cursor;
-  document.getElementById(`deckCount-${deckId}`).textContent =
-    `${remaining} card${remaining !== 1 ? 's' : ''} remaining`;
-}
-
 // ── DRAW CARD ──
 function drawCard(deckId) {
   if (isAnimating) return;
   lastDeckId = deckId;
   const card = DECKS[deckId].draw();
   openCardModal(card.imagePath);
-  updateDeckCount(deckId);
 }
 
 function openCardModal(src) {
@@ -123,6 +115,3 @@ function dismissCard() {
   modal.classList.remove('active');
   isAnimating = false;
 }
-
-// Init counts
-Object.keys(DECKS).forEach(updateDeckCount);
