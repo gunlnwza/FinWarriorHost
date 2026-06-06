@@ -104,16 +104,23 @@ body {
 .deck-menu-btn:hover { color: var(--text-muted); }
 
 .deck-dropdown {
-  display: none;
   position: absolute;
   top: calc(100% + 4px);
   right: 0;
   background: none;
   white-space: nowrap;
   z-index: 10;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-4px);
+  transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
 }
 
-.deck-menu.open .deck-dropdown { display: block; }
+.deck-menu.open .deck-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
 
 .deck-dropdown button {
   display: block;
