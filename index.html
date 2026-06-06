@@ -19,9 +19,12 @@
         <img src="assets/cards/daily_alert/back.png" alt="">
       </div>
     </div>
-    <div class="deck-actions">
-      <button class="inspect-btn" onclick="shuffleDeck('daily')">สับไพ่</button>
-      <button class="inspect-btn" onclick="openInspectModal('daily')">ดู</button>
+    <div class="deck-menu">
+      <button class="deck-menu-btn" onclick="toggleDeckMenu(this); event.stopPropagation()">···</button>
+      <div class="deck-dropdown">
+        <button onclick="shuffleDeck('daily'); closeDeckMenus()">สับไพ่</button>
+        <button onclick="openInspectModal('daily'); closeDeckMenus()">ดูไพ่</button>
+      </div>
     </div>
   </div>
 
@@ -32,9 +35,12 @@
         <img src="assets/cards/economics_event/back.png" alt="">
       </div>
     </div>
-    <div class="deck-actions">
-      <button class="inspect-btn" onclick="shuffleDeck('economics')">สับไพ่</button>
-      <button class="inspect-btn" onclick="openInspectModal('economics')">ดู</button>
+    <div class="deck-menu">
+      <button class="deck-menu-btn" onclick="toggleDeckMenu(this); event.stopPropagation()">···</button>
+      <div class="deck-dropdown">
+        <button onclick="shuffleDeck('economics'); closeDeckMenus()">สับไพ่</button>
+        <button onclick="openInspectModal('economics'); closeDeckMenus()">ดูไพ่</button>
+      </div>
     </div>
   </div>
 

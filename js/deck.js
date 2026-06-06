@@ -116,6 +116,20 @@ function dismissCard() {
   }, 300);
 }
 
+// ── DECK MENU ──
+function toggleDeckMenu(btn) {
+  const menu = btn.closest('.deck-menu');
+  const isOpen = menu.classList.contains('open');
+  closeDeckMenus();
+  if (!isOpen) menu.classList.add('open');
+}
+
+function closeDeckMenus() {
+  document.querySelectorAll('.deck-menu.open').forEach(m => m.classList.remove('open'));
+}
+
+document.addEventListener('click', closeDeckMenus);
+
 // ── SHUFFLE ──
 function shuffleDeck(deckId) {
   if (isAnimating) return;

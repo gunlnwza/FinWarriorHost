@@ -80,22 +80,60 @@ body {
 
 .deck-stack:active .card-back { transform: translateY(-1px); }
 
-/* ── DECK ACTIONS ── */
-.deck-actions {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
+/* ── DECK MENU ── */
+.deck-menu {
+  position: relative;
   width: 160px;
-  align-items: center;
+  display: flex;
+  justify-content: flex-end;
 }
 
-.deck-actions button:first-child {
-  grid-column: 2;
+.deck-menu-btn {
+  background: none;
+  border: none;
+  color: var(--border);
+  font-size: 1rem;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  padding: 4px 8px;
+  margin-top: 8px;
+  transition: color 0.2s;
+  display: block;
 }
 
-.deck-actions button:last-child {
-  grid-column: 3;
-  justify-self: end;
+.deck-menu-btn:hover { color: var(--text-muted); }
+
+.deck-dropdown {
+  display: none;
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: 0 4px 16px var(--shadow-deep);
+  overflow: hidden;
+  white-space: nowrap;
+  z-index: 10;
 }
+
+.deck-menu.open .deck-dropdown { display: block; }
+
+.deck-dropdown button {
+  display: block;
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 8px 16px;
+  font-size: 0.8rem;
+  color: var(--text);
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.15s;
+}
+
+.deck-dropdown button:hover { background: var(--surface); }
 
 .deck-stack.shuffling { animation: deckShake 0.5s ease-in-out; }
 
@@ -107,20 +145,6 @@ body {
   80%  { transform: rotate(1deg) scale(0.99); }
   100% { transform: rotate(0deg) scale(1); }
 }
-
-/* ── INSPECT BUTTON ── */
-.inspect-btn {
-  background: none;
-  border: none;
-  color: var(--border);
-  font-size: 0.80rem;
-  cursor: pointer;
-  padding: 4px 8px;
-  margin-top: 8px;
-  transition: color 0.2s;
-}
-
-.inspect-btn:hover { color: var(--text-muted); }
 
 /* ── INSPECT MODAL ── */
 .inspect-modal-content {
