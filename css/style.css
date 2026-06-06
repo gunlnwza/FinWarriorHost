@@ -259,7 +259,7 @@ body {
 }
 
 .modal-hint {
-  font-size: 0.85rem;
+  font-size: 0.70rem;
   letter-spacing: 0.1em;
   color: var(--text-muted);
   animation: pulse 2s ease-in-out infinite;
