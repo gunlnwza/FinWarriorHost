@@ -118,8 +118,13 @@ function dismissCard() {
 
 // ── INSPECT MODAL ──
 function openInspectModal(deckId) {
+  const deck = DECKS[deckId];
+  const ordered = [
+    ...deck.cards.slice(deck.cursor),
+    ...deck.cards.slice(0, deck.cursor),
+  ];
   const grid = document.getElementById('inspectGrid');
-  grid.innerHTML = DECKS[deckId].cards
+  grid.innerHTML = ordered
     .map(c => `<img src="${c.imagePath}" alt="${c.id}">`)
     .join('');
   document.getElementById('inspectModal').classList.add('active');
