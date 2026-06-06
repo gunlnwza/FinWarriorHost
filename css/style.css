@@ -107,13 +107,8 @@ body {
   display: none;
   position: absolute;
   top: calc(100% + 4px);
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  box-shadow: 0 4px 16px var(--shadow-deep);
-  overflow: hidden;
+  right: 0;
+  background: none;
   white-space: nowrap;
   z-index: 10;
 }
@@ -125,15 +120,18 @@ body {
   width: 100%;
   background: none;
   border: none;
-  padding: 8px 16px;
+  border-bottom: 1px solid var(--border);
+  padding: 6px 4px;
   font-size: 0.8rem;
-  color: var(--text);
+  color: var(--border);
   cursor: pointer;
-  text-align: left;
-  transition: background 0.15s;
+  text-align: right;
+  transition: color 0.15s;
 }
 
-.deck-dropdown button:hover { background: var(--surface); }
+.deck-dropdown button:last-child { border-bottom: none; }
+
+.deck-dropdown button:hover { color: var(--text-muted); }
 
 .deck-stack.shuffling { animation: deckShake 0.5s ease-in-out; }
 
