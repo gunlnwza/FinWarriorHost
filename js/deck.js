@@ -115,48 +115,13 @@ function openCardModal(src) {
 
 function dismissCard() {
   if (isAnimating) return;
-  isAnimating = true;
 
   const modal = document.getElementById('cardModal');
   const flipInner = document.getElementById('cardFlipInner');
-  const deckStack = document.getElementById(`deckStack-${lastDeckId}`);
 
   flipInner.classList.remove('revealed');
-
-  setTimeout(() => {
-    const cardRect = flipInner.getBoundingClientRect();
-    const deckRect = deckStack.getBoundingClientRect();
-
-    const flyCard = document.createElement('div');
-    flyCard.className = 'flying-card';
-    flyCard.style.cssText = `
-      left: ${cardRect.left}px;
-      top: ${cardRect.top}px;
-      width: ${cardRect.width}px;
-      height: ${cardRect.height}px;
-    `;
-    document.body.appendChild(flyCard);
-
-    modal.classList.remove('active');
-
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        flyCard.style.transition = 'all 0.55s cubic-bezier(0.4, 0, 0.2, 1)';
-        flyCard.style.left = `${deckRect.left}px`;
-        flyCard.style.top = `${deckRect.top + deckRect.height}px`;
-        flyCard.style.width = `${deckRect.width}px`;
-        flyCard.style.height = `${deckRect.height}px`;
-        flyCard.style.opacity = '0';
-        flyCard.style.transform = 'scale(0.85)';
-      });
-    });
-
-    setTimeout(() => {
-      flyCard.remove();
-      isAnimating = false;
-    }, 600);
-
-  }, 400);
+  modal.classList.remove('active');
+  isAnimating = false;
 }
 
 // Init counts
