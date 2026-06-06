@@ -18,22 +18,17 @@ This is a vanilla HTML/CSS/JS game host controller for **The Fin Warrior**, a fi
 
 **Files:**
 - `index.html` — UI with two card deck zones (Daily Alert, Economics Event) and a dice zone
-- `script.js` — Game state (`DECKS` object), card draw/modal logic, dice rolling
-- `deck.js` — `Card` and `CardDeck` classes (being introduced in the refactor branch)
-- `style.css` — All styling
+- `js/deck.js` — `Card`/`CardDeck` classes and the `DECKS` object (all card data lives here)
+- `js/dice.js` — Dice rolling logic
+- `js/state.js` — Shared game state
+- `css/style.css` — All styling
 - `assets/cards/` — Card face images, organized into `daily_alert/`, `economics_event/`, and `asset/` subdirectories
 - `assets/dice/` — Dice face images (1–3 plain, 1–3 star variants)
 
-**Current split:** `deck.js` defines the `Card`/`CardDeck` classes but `script.js` still uses the legacy `DECKS` plain-object pattern. The `refactor` branch is migrating `script.js` to use `deck.js`.
+**Card draw flow:** clicking a deck stack calls `drawCard(deckId)` → `openCardModal(src)` → CSS flip animation reveals the card face.
 
-**Card draw flow:** clicking a deck stack calls `drawCard(deckId)` → `openCardModal(src)` → CSS flip animation reveals the card face. Dismissing animates a "flying card" clone back to the deck.
-
-**Dice:** `rollDice()` cycles through random pip layouts (or custom images if loaded) then settles on the result. Custom face images can be loaded via `loadDice()`.
+**Dice:** `rollDice()` cycles through random pip layouts then settles on the result.
 
 ## Adding Cards
 
-Drop a PNG into the appropriate `assets/cards/<deck>/` folder and add its path to the `cards` array in `script.js` (`DECKS.daily.cards` or `DECKS.economics.cards`).
-
-## Archive
-
-`archive/slice_cards.py` is a one-off utility to crop card images from a PDF using `pdf2image`. Not part of the app runtime.
+Drop a PNG into the appropriate `assets/cards/<deck>/` folder and add a `new Card(...)` entry to the matching `CardDeck` in `js/deck.js`.
