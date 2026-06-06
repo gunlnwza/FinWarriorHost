@@ -39,9 +39,6 @@ class CardDeck {
 
 
 // ── STATE ──
-let isAnimating = false;
-let lastDeckId = null;
-
 const DECKS = {
   daily: new CardDeck('daily', 'Daily Alert', 'assets/cards/daily_alert/back.png', [
     new Card('air_pollution',       'daily', 'assets/cards/daily_alert/air_pollution.png'),
@@ -77,30 +74,32 @@ const DECKS = {
 
 Object.values(DECKS).forEach(deck => deck.shuffle());
 
+// ── DOM (cached once at startup) ──
+const cardModal    = document.getElementById('cardModal');
+const cardFlipInner = document.getElementById('cardFlipInner');
+const cardRevealImg = document.getElementById('cardRevealImg');
+const cardBackImg   = document.querySelector('#cardFlipInner .card-back-face img');
+
 // ── DRAW CARD ──
 function drawCard(deckId) {
   if (isAnimating) return;
-  lastDeckId = deckId;
   const card = DECKS[deckId].draw();
-  openCardModal(card.imagePath);
+  openCardModal(card.imagePath, DECKS[deckId].backImagePath, deckId);
 }
 
-function openCardModal(src) {
+function openCardModal(src, backSrc, deckId) {
   isAnimating = true;
-  const modal = document.getElementById('cardModal');
-  const flipInner = document.getElementById('cardFlipInner');
-  const img = document.getElementById('cardRevealImg');
 
-  img.src = src;
-  document.querySelector('#cardFlipInner .card-back-face img').src = DECKS[lastDeckId].backImagePath;
+  cardRevealImg.src = src;
+  cardBackImg.src = backSrc;
 
-  flipInner.classList.remove('revealed');
-  modal.classList.toggle('daily-alert', lastDeckId === 'daily');
-  modal.classList.toggle('economics-alert', lastDeckId === 'economics');
-  modal.classList.add('active');
+  cardFlipInner.classList.remove('revealed');
+  cardModal.classList.toggle('daily-alert', deckId === 'daily');
+  cardModal.classList.toggle('economics-alert', deckId === 'economics');
+  cardModal.classList.add('active');
 
   setTimeout(() => {
-    flipInner.classList.add('revealed');
+    cardFlipInner.classList.add('revealed');
     isAnimating = false;
   }, 200);
 }
@@ -109,13 +108,10 @@ function dismissCard() {
   if (isAnimating) return;
   isAnimating = true;
 
-  const modal = document.getElementById('cardModal');
-  const flipInner = document.getElementById('cardFlipInner');
-
-  flipInner.classList.remove('revealed');
+  cardFlipInner.classList.remove('revealed');
 
   setTimeout(() => {
-    modal.classList.remove('active');
+    cardModal.classList.remove('active');
     isAnimating = false;
   }, 300);
 }

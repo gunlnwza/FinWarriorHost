@@ -7,30 +7,32 @@ const DICE_FACES = [
   { src: 'assets/dice/three_star.png' },
 ];
 
+// ── DOM (cached once at startup) ──
+const dieEl  = document.getElementById('die');
+const rollBtn = document.getElementById('rollBtn');
+
 function showFace(face) {
-  document.getElementById('die').innerHTML = `<img src="${face.src}" alt="">`;
+  const img = document.createElement('img');
+  img.src = face.src;
+  dieEl.replaceChildren(img);
 }
 
 function randomFace() {
-  return DICE_FACES[Math.floor(Math.random() * DICE_FACES.length)]
+  return DICE_FACES[Math.floor(Math.random() * DICE_FACES.length)];
 }
 
 function rollDice() {
   if (isAnimating) return;
   isAnimating = true;
 
-  const die = document.getElementById('die');
-  const btn = document.getElementById('rollBtn');
   const result = randomFace();
-
-  btn.disabled = true;
+  rollBtn.disabled = true;
 
   let lastFace = null;
   function randomFaceNoRepeat() {
     const pool = lastFace
-    ? DICE_FACES.filter(face => face.src !== lastFace.src)
-    : DICE_FACES;
-    
+      ? DICE_FACES.filter(face => face.src !== lastFace.src)
+      : DICE_FACES;
     const next = pool[Math.floor(Math.random() * pool.length)];
     lastFace = next;
     return next;
@@ -43,15 +45,15 @@ function rollDice() {
     DICE_FACE_SHOW_TIME
   );
 
-  die.classList.remove('rolling');
-  void die.offsetWidth;
-  die.classList.add('rolling');
+  dieEl.classList.remove('rolling');
+  void dieEl.offsetWidth;
+  dieEl.classList.add('rolling');
 
   setTimeout(() => {
     clearInterval(cycle);
-    die.classList.remove('rolling');
+    dieEl.classList.remove('rolling');
     showFace(result);
-    btn.disabled = false;
+    rollBtn.disabled = false;
     isAnimating = false;
   }, DICE_AIR_TIME);
 }
