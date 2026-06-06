@@ -41,8 +41,8 @@ function rollDice() {
     return next;
   }
 
-  const DICE_AIR_TIME = 600;
-  const DICE_FACE_SHOW_TIME = 150;
+  const DICE_AIR_TIME = 800;
+  const DICE_FACE_SHOW_TIME = 100;
   const cycle = setInterval(
     () => showFace(randomFaceNoRepeat()),
     DICE_FACE_SHOW_TIME
