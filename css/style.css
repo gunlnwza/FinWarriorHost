@@ -80,6 +80,23 @@ body {
 
 .deck-stack:active .card-back { transform: translateY(-1px); }
 
+/* ── DECK ACTIONS ── */
+.deck-actions {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.deck-stack.shuffling { animation: deckShake 0.5s ease-in-out; }
+
+@keyframes deckShake {
+  0%   { transform: rotate(0deg) scale(1); }
+  20%  { transform: rotate(-4deg) scale(1.03); }
+  40%  { transform: rotate(3deg) scale(0.97); }
+  60%  { transform: rotate(-2deg) scale(1.02); }
+  80%  { transform: rotate(1deg) scale(0.99); }
+  100% { transform: rotate(0deg) scale(1); }
+}
+
 /* ── INSPECT BUTTON ── */
 .inspect-btn {
   background: none;

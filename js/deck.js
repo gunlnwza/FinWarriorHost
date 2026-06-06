@@ -116,6 +116,15 @@ function dismissCard() {
   }, 300);
 }
 
+// ── SHUFFLE ──
+function shuffleDeck(deckId) {
+  if (isAnimating) return;
+  DECKS[deckId].shuffle();
+  const stack = document.getElementById(`deckStack-${deckId}`);
+  stack.classList.add('shuffling');
+  stack.addEventListener('animationend', () => stack.classList.remove('shuffling'), { once: true });
+}
+
 // ── INSPECT MODAL ──
 function openInspectModal(deckId) {
   const deck = DECKS[deckId];
