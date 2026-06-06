@@ -36,7 +36,12 @@ function rollDice() {
     return next;
   }
 
-  const cycle = setInterval(() => showFace(randomFaceNoRepeat()), 100);
+  const DICE_AIR_TIME = 600;
+  const DICE_FACE_SHOW_TIME = 150;
+  const cycle = setInterval(
+    () => showFace(randomFaceNoRepeat()),
+    DICE_FACE_SHOW_TIME
+  );
 
   die.classList.remove('rolling');
   void die.offsetWidth;
@@ -48,5 +53,5 @@ function rollDice() {
     showFace(result);
     btn.disabled = false;
     isAnimating = false;
-  }, 600);
+  }, DICE_AIR_TIME);
 }

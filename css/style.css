@@ -106,11 +106,12 @@ body {
 
 @keyframes diceShake {
   0%   { transform: rotate(0deg) scale(1); }
-  15%  { transform: rotate(-16deg) scale(1.05); }
-  30%  { transform: rotate(12deg) scale(0.96); }
-  45%  { transform: rotate(-8deg) scale(1.03); }
-  60%  { transform: rotate(4deg) scale(0.98); }
-  75%  { transform: rotate(-2deg) scale(1.01); }
+  12%  { transform: rotate(-14deg) scale(1.07); }
+  26%  { transform: rotate(11deg) scale(0.95); }
+  40%  { transform: rotate(-10deg) scale(1.05); }
+  54%  { transform: rotate(7deg) scale(0.97); }
+  68%  { transform: rotate(-5deg) scale(1.02); }
+  82%  { transform: rotate(3deg) scale(0.99); }
   100% { transform: rotate(0deg) scale(1); }
 }
 
