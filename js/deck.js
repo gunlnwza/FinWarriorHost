@@ -102,16 +102,20 @@ function openCardModal(src) {
   setTimeout(() => {
     flipInner.classList.add('revealed');
     isAnimating = false;
-  }, 300);
+  }, 200);
 }
 
 function dismissCard() {
   if (isAnimating) return;
+  isAnimating = true;
 
   const modal = document.getElementById('cardModal');
   const flipInner = document.getElementById('cardFlipInner');
 
   flipInner.classList.remove('revealed');
-  modal.classList.remove('active');
-  isAnimating = false;
+
+  setTimeout(() => {
+    modal.classList.remove('active');
+    isAnimating = false;
+  }, 300);
 }
