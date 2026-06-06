@@ -263,20 +263,6 @@ h1 {
   50% { opacity: 0.8; }
 }
 
-/* ── CARD RETURN ANIMATION ── */
-.flying-card {
-  position: fixed;
-  border-radius: 8px;
-  background: var(--bg);
-  border: 1.5px solid var(--border-strong);
-  pointer-events: none;
-  z-index: 200;
-  transform-origin: center center;
-  box-shadow: 0 10px 40px var(--shadow-deep);
-}
-
-input[type=file] { display: none; }
-
 /* Divider */
 .divider {
   width: 1px;
