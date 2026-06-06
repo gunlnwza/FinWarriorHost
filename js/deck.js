@@ -39,9 +39,6 @@ class CardDeck {
 
 
 // ── STATE ──
-let isAnimating = false;
-let lastDeckId = null;
-
 const DECKS = {
   daily: new CardDeck('daily', 'Daily Alert', 'assets/cards/daily_alert/back.png', [
     new Card('air_pollution',       'daily', 'assets/cards/daily_alert/air_pollution.png'),
@@ -57,6 +54,7 @@ const DECKS = {
     new Card('prize_04',            'daily', 'assets/cards/daily_alert/prize_04.png'),
     new Card('prize_05',            'daily', 'assets/cards/daily_alert/prize_05.png'),
     new Card('trade_asset',         'daily', 'assets/cards/daily_alert/trade_asset.png'),
+    new Card('trade_asset',         'daily', 'assets/cards/daily_alert/trade_asset.png'),
   ]),
   economics: new CardDeck('economics', 'Economics Event', 'assets/cards/economics_event/back.png', [
     new Card('development_in_ai',          'economics', 'assets/cards/economics_event/development_in_ai.png'),
@@ -68,9 +66,95 @@ const DECKS = {
     new Card('lower_global_agri_price',    'economics', 'assets/cards/economics_event/lower_global_agri_price.png'),
     new Card('major_flood',                'economics', 'assets/cards/economics_event/major_flood.png'),
     new Card('political_problem',          'economics', 'assets/cards/economics_event/political_problem.png'),
+    new Card('political_problem',          'economics', 'assets/cards/economics_event/political_problem.png'),
     new Card('restrict_food_export',       'economics', 'assets/cards/economics_event/restrict_food_export.png'),
     new Card('stronger_usd',               'economics', 'assets/cards/economics_event/stronger_usd.png'),
     new Card('support_alternative_energy', 'economics', 'assets/cards/economics_event/support_alternative_energy.png'),
     new Card('trade_war',                  'economics', 'assets/cards/economics_event/trade_war.png'),
   ]),
 };
+
+Object.values(DECKS).forEach(deck => deck.shuffle());
+
+// ── DOM (cached once at startup) ──
+const cardModal    = document.getElementById('cardModal');
+const cardFlipInner = document.getElementById('cardFlipInner');
+const cardRevealImg = document.getElementById('cardRevealImg');
+const cardBackImg   = document.querySelector('#cardFlipInner .card-back-face img');
+
+// ── DRAW CARD ──
+function drawCard(deckId) {
+  if (isAnimating) return;
+  const card = DECKS[deckId].draw();
+  openCardModal(card.imagePath, DECKS[deckId].backImagePath, deckId);
+}
+
+function openCardModal(src, backSrc, deckId) {
+  isAnimating = true;
+
+  cardRevealImg.src = src;
+  cardBackImg.src = backSrc;
+
+  cardFlipInner.classList.remove('revealed');
+  cardModal.classList.toggle('daily-alert', deckId === 'daily');
+  cardModal.classList.toggle('economics-alert', deckId === 'economics');
+  cardModal.classList.add('active');
+
+  setTimeout(() => {
+    cardFlipInner.classList.add('revealed');
+    isAnimating = false;
+  }, 200);
+}
+
+function dismissCard() {
+  if (isAnimating) return;
+  isAnimating = true;
+
+  cardFlipInner.classList.remove('revealed');
+
+  setTimeout(() => {
+    cardModal.classList.remove('active');
+    isAnimating = false;
+  }, 300);
+}
+
+// ── DECK MENU ──
+function toggleDeckMenu(btn) {
+  const menu = btn.closest('.deck-menu');
+  const isOpen = menu.classList.contains('open');
+  closeDeckMenus();
+  if (!isOpen) menu.classList.add('open');
+}
+
+function closeDeckMenus() {
+  document.querySelectorAll('.deck-menu.open').forEach(m => m.classList.remove('open'));
+}
+
+document.addEventListener('click', closeDeckMenus);
+
+// ── SHUFFLE ──
+function shuffleDeck(deckId) {
+  if (isAnimating) return;
+  DECKS[deckId].shuffle();
+  const stack = document.getElementById(`deckStack-${deckId}`);
+  stack.classList.add('shuffling');
+  stack.addEventListener('animationend', () => stack.classList.remove('shuffling'), { once: true });
+}
+
+// ── INSPECT MODAL ──
+function openInspectModal(deckId) {
+  const deck = DECKS[deckId];
+  const ordered = [
+    ...deck.cards.slice(deck.cursor),
+    ...deck.cards.slice(0, deck.cursor),
+  ];
+  const grid = document.getElementById('inspectGrid');
+  grid.innerHTML = ordered
+    .map(c => `<img src="${c.imagePath}" alt="${c.id}">`)
+    .join('');
+  document.getElementById('inspectModal').classList.add('active');
+}
+
+function closeInspectModal() {
+  document.getElementById('inspectModal').classList.remove('active');
+}

@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Fin Warrior</title>
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
@@ -13,16 +13,34 @@
 <!---------------------------------------------------------------------------->
 <div class="table">
   <!-- DAILY ALERT DECK -->
-  <div class="deck-stack" id="deckStack-daily" onclick="drawCard('daily')">
-    <div class="card-back">
-      <img src="assets/cards/daily_alert/back.png" alt="">
+  <div class="deck-zone">
+    <div class="deck-stack" id="deckStack-daily" onclick="drawCard('daily')">
+      <div class="card-back">
+        <img src="assets/cards/daily_alert/back.png" alt="">
+      </div>
+    </div>
+    <div class="deck-menu">
+      <button class="deck-menu-btn" onclick="toggleDeckMenu(this); event.stopPropagation()">···</button>
+      <div class="deck-dropdown">
+        <button onclick="shuffleDeck('daily'); closeDeckMenus()">สับไพ่</button>
+        <button onclick="openInspectModal('daily'); closeDeckMenus()">ดูไพ่</button>
+      </div>
     </div>
   </div>
 
   <!-- ECONOMICS EVENT DECK -->
-  <div class="deck-stack" id="deckStack-economics" onclick="drawCard('economics')">
-    <div class="card-back">
-      <img src="assets/cards/economics_event/back.png" alt="">
+  <div class="deck-zone">
+    <div class="deck-stack" id="deckStack-economics" onclick="drawCard('economics')">
+      <div class="card-back">
+        <img src="assets/cards/economics_event/back.png" alt="">
+      </div>
+    </div>
+    <div class="deck-menu">
+      <button class="deck-menu-btn" onclick="toggleDeckMenu(this); event.stopPropagation()">···</button>
+      <div class="deck-dropdown">
+        <button onclick="shuffleDeck('economics'); closeDeckMenus()">สับไพ่</button>
+        <button onclick="openInspectModal('economics'); closeDeckMenus()">ดูไพ่</button>
+      </div>
     </div>
   </div>
 
@@ -53,13 +71,24 @@
         </div>
       </div>
     </div>
-    <div class="modal-hint">Click anywhere to return card to deck</div>
+    <div class="modal-hint">คลิกข้างนอกเพื่อสอดไพ่เข้าใต้กอง</div>
   </div>
 </div>
 
-<script src="deck.js"></script>
-<script src="dice.js"></script>
-<script src="script.js"></script>
+<!-- INSPECT MODAL -->
+<div class="modal" id="inspectModal">
+  <div class="modal-backdrop" onclick="closeInspectModal()"></div>
+  <div class="modal-content">
+    <div class="inspect-modal-content">
+      <div class="inspect-grid" id="inspectGrid"></div>
+    </div>
+    <div class="modal-hint">คลิกข้างนอกเพื่อออก</div>
+  </div>
+</div>
+
+<script src="js/state.js"></script>
+<script src="js/deck.js"></script>
+<script src="js/dice.js"></script>
 
 </body>
 </html>
