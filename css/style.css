@@ -29,6 +29,12 @@ body {
 }
 
 /* ── CARD DECK ── */
+.deck-zone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .deck-stack {
   position: relative;
   width: 160px;
@@ -72,6 +78,46 @@ body {
 }
 
 .deck-stack:active .card-back { transform: translateY(-1px); }
+
+/* ── INSPECT BUTTON ── */
+.inspect-btn {
+  background: none;
+  border: none;
+  color: var(--border);
+  font-size: 0.85rem;
+  cursor: pointer;
+  padding: 4px 8px;
+  margin-top: 8px;
+  transition: color 0.2s;
+}
+
+.inspect-btn:hover { color: var(--text-muted); }
+
+/* ── INSPECT MODAL ── */
+.inspect-modal-content {
+  position: relative;
+  z-index: 1;
+  background: var(--bg);
+  border-radius: 12px;
+  padding: 1.5rem;
+  max-width: 90vw;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px var(--shadow-deep);
+}
+
+.inspect-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 0.75rem;
+}
+
+.inspect-grid img {
+  width: 100%;
+  border-radius: 6px;
+  border: 1.5px solid var(--border);
+  display: block;
+}
 
 /* ── DICE ── */
 .dice-zone {

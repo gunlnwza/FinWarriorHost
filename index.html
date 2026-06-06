@@ -13,17 +13,23 @@
 <!---------------------------------------------------------------------------->
 <div class="table">
   <!-- DAILY ALERT DECK -->
-  <div class="deck-stack" id="deckStack-daily" onclick="drawCard('daily')">
-    <div class="card-back">
-      <img src="assets/cards/daily_alert/back.png" alt="">
+  <div class="deck-zone">
+    <div class="deck-stack" id="deckStack-daily" onclick="drawCard('daily')">
+      <div class="card-back">
+        <img src="assets/cards/daily_alert/back.png" alt="">
+      </div>
     </div>
+    <button class="inspect-btn" onclick="openInspectModal('daily')">⊞</button>
   </div>
 
   <!-- ECONOMICS EVENT DECK -->
-  <div class="deck-stack" id="deckStack-economics" onclick="drawCard('economics')">
-    <div class="card-back">
-      <img src="assets/cards/economics_event/back.png" alt="">
+  <div class="deck-zone">
+    <div class="deck-stack" id="deckStack-economics" onclick="drawCard('economics')">
+      <div class="card-back">
+        <img src="assets/cards/economics_event/back.png" alt="">
+      </div>
     </div>
+    <button class="inspect-btn" onclick="openInspectModal('economics')">⊞</button>
   </div>
 
   <!-- DICE -->
@@ -54,6 +60,14 @@
       </div>
     </div>
     <div class="modal-hint">คลิกข้างนอกเพื่อสอดการ์ดเข้าใต้กอง</div>
+  </div>
+</div>
+
+<!-- INSPECT MODAL -->
+<div class="modal" id="inspectModal">
+  <div class="modal-backdrop" onclick="closeInspectModal()"></div>
+  <div class="inspect-modal-content">
+    <div class="inspect-grid" id="inspectGrid"></div>
   </div>
 </div>
 

@@ -115,3 +115,16 @@ function dismissCard() {
     isAnimating = false;
   }, 300);
 }
+
+// ── INSPECT MODAL ──
+function openInspectModal(deckId) {
+  const grid = document.getElementById('inspectGrid');
+  grid.innerHTML = DECKS[deckId].cards
+    .map(c => `<img src="${c.imagePath}" alt="${c.id}">`)
+    .join('');
+  document.getElementById('inspectModal').classList.add('active');
+}
+
+function closeInspectModal() {
+  document.getElementById('inspectModal').classList.remove('active');
+}
