@@ -40,7 +40,7 @@ function renderKnight() {
   img.alt = 'knight';
   const tooltip = document.createElement('span');
   tooltip.className = 'knight-tooltip';
-  tooltip.innerHTML = 'กด A หรือ D<br>เพื่อเดินตัวอัศวิน<br>';
+  tooltip.innerHTML = 'กด A หรือ D<br>เพื่อเดินนักรบ<br>';
   cell.appendChild(img);
   cell.appendChild(tooltip);
   img.className = 'knight landing';
