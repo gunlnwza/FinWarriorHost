@@ -55,44 +55,69 @@
 <!-- VISIBLE -->
 <!---------------------------------------------------------------------------->
 <main>
+<div class="game-area">
 <div class="table">
-  <!-- DAILY ALERT DECK -->
-  <div class="deck-zone">
-    <div class="deck-stack" id="deckStack-daily" onclick="drawCard('daily')">
-      <div class="card-back">
-        <img src="assets/cards/daily_alert/back.png" alt="">
+  <!-- DICE -->
+  <div class="dice-zone">
+    <div class="dice-scene" id="rollBtn" onclick="rollDice()">
+      <div class="die" id="die">
+        <img src="assets/dice/one.png" alt="">
       </div>
     </div>
+  </div>
+  
+  <!-- DAILY ALERT DECK -->
+  <div class="deck-zone">
     <div class="deck-menu">
       <button class="deck-menu-btn" onclick="toggleDeckMenu(this); event.stopPropagation()">···</button>
       <div class="deck-dropdown">
-        <button onclick="openInspectModal('daily'); closeDeckMenus()">ดูไพ่</button>
+        <button onclick="openInspectModal('daily'); closeDeckMenus()">ดูไพ่ทั้งหมด</button>
         <button class="red" onclick="shuffleDeck('daily'); closeDeckMenus()">สับไพ่</button>
+      </div>
+    </div>
+    <div class="deck-row">
+      <div class="deck-stack" id="deckStack-daily" onclick="drawCard('daily')">
+        <div class="card-back">
+          <img src="assets/cards/daily_alert/back.png" alt="">
+        </div>
+      </div>
+      <div class="card-slot" id="cardSlot-daily" onclick="returnCard('daily')">
+        <div class="card-flip-inner" id="cardFlip-daily">
+          <!-- <div class="card-back-face">
+            <img src="assets/cards/daily_alert/back.png" alt="">
+          </div> -->
+          <div class="card-front-face daily-alert">
+            <img id="cardRevealImg-daily" src="" alt="">
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
   <!-- ECONOMICS EVENT DECK -->
   <div class="deck-zone">
-    <div class="deck-stack" id="deckStack-economics" onclick="drawCard('economics')">
-      <div class="card-back">
-        <img src="assets/cards/economics_event/back.png" alt="">
-      </div>
-    </div>
     <div class="deck-menu">
       <button class="deck-menu-btn" onclick="toggleDeckMenu(this); event.stopPropagation()">···</button>
       <div class="deck-dropdown">
-        <button onclick="openInspectModal('economics'); closeDeckMenus()">ดูไพ่</button>
+        <button onclick="openInspectModal('economics'); closeDeckMenus()">ดูไพ่ทั้งหมด</button>
         <button class="red" onclick="shuffleDeck('economics'); closeDeckMenus()">สับไพ่</button>
       </div>
     </div>
-  </div>
-
-  <!-- DICE -->
-  <div class="dice-zone">
-    <div class="dice-scene" id="rollBtn" onclick="rollDice()">
-      <div class="die" id="die">
-        <img src="assets/dice/one.png" alt="">
+    <div class="deck-row">
+      <div class="deck-stack" id="deckStack-economics" onclick="drawCard('economics')">
+        <div class="card-back">
+          <img src="assets/cards/economics_event/back.png" alt="">
+        </div>
+      </div>
+      <div class="card-slot" id="cardSlot-economics" onclick="returnCard('economics')">
+        <div class="card-flip-inner" id="cardFlip-economics">
+          <!-- <div class="card-back-face">
+            <img src="assets/cards/economics_event/back.png" alt="">
+          </div> -->
+          <div class="card-front-face economics-alert">
+            <img id="cardRevealImg-economics" src="" alt="">
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -134,6 +159,7 @@
       <span class="color-blob" data-cell="7"></span>
     </div>
   </div>
+</div>
 </div>
 </main>
 
