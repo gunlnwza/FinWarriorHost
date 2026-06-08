@@ -29,7 +29,7 @@ body {
   left: 1.25rem;
   height: 90px;
   width: auto;
-  pointer-events: none;
+  opacity: 0.9;
 }
 
 .table {
