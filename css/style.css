@@ -456,8 +456,8 @@ main {
 }
 
 .card-flip-inner {
-  width: min(60vw, 340px);
-  height: min(84vw, 500px);
+  width: 100%;
+  height: 100%;
   position: relative;
   transform-style: preserve-3d;
   transition: transform 0.7s cubic-bezier(0.23, 1, 0.32, 1);
