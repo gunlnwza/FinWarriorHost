@@ -67,6 +67,13 @@
   
   <!-- DAILY ALERT DECK -->
   <div class="deck-zone">
+    <div class="deck-menu">
+      <button class="deck-menu-btn" onclick="toggleDeckMenu(this); event.stopPropagation()">···</button>
+      <div class="deck-dropdown">
+        <button onclick="openInspectModal('daily'); closeDeckMenus()">ดูไพ่</button>
+        <button class="red" onclick="shuffleDeck('daily'); closeDeckMenus()">สับไพ่</button>
+      </div>
+    </div>
     <div class="deck-row">
       <div class="deck-stack" id="deckStack-daily" onclick="drawCard('daily')">
         <div class="card-back">
@@ -84,17 +91,17 @@
         </div>
       </div>
     </div>
-    <div class="deck-menu">
-      <button class="deck-menu-btn" onclick="toggleDeckMenu(this); event.stopPropagation()">···</button>
-      <div class="deck-dropdown">
-        <button onclick="openInspectModal('daily'); closeDeckMenus()">ดูไพ่</button>
-        <button class="red" onclick="shuffleDeck('daily'); closeDeckMenus()">สับไพ่</button>
-      </div>
-    </div>
   </div>
 
   <!-- ECONOMICS EVENT DECK -->
   <div class="deck-zone">
+    <div class="deck-menu">
+      <button class="deck-menu-btn" onclick="toggleDeckMenu(this); event.stopPropagation()">···</button>
+      <div class="deck-dropdown">
+        <button onclick="openInspectModal('economics'); closeDeckMenus()">ดูไพ่</button>
+        <button class="red" onclick="shuffleDeck('economics'); closeDeckMenus()">สับไพ่</button>
+      </div>
+    </div>
     <div class="deck-row">
       <div class="deck-stack" id="deckStack-economics" onclick="drawCard('economics')">
         <div class="card-back">
@@ -110,13 +117,6 @@
             <img id="cardRevealImg-economics" src="" alt="">
           </div>
         </div>
-      </div>
-    </div>
-    <div class="deck-menu">
-      <button class="deck-menu-btn" onclick="toggleDeckMenu(this); event.stopPropagation()">···</button>
-      <div class="deck-dropdown">
-        <button onclick="openInspectModal('economics'); closeDeckMenus()">ดูไพ่</button>
-        <button class="red" onclick="shuffleDeck('economics'); closeDeckMenus()">สับไพ่</button>
       </div>
     </div>
   </div>

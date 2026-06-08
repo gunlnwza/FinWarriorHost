@@ -130,9 +130,7 @@ main {
 /* ── DECK MENU ── */
 .deck-menu {
   position: relative;
-  width: 160px;
-  display: flex;
-  justify-content: flex-end;
+  align-self: flex-start;
 }
 
 .deck-menu-btn {
@@ -153,7 +151,7 @@ main {
 .deck-dropdown {
   position: absolute;
   top: calc(100% + 4px);
-  right: 0;
+  left: 0;
   background: var(--bg);
   border: 1px solid var(--border);
   border-radius: 8px;
@@ -183,7 +181,7 @@ main {
   font-size: 1rem;
   color: var(--text-muted);
   cursor: pointer;
-  text-align: right;
+  text-align: left;
   transition: color 0.15s;
 }
 .deck-dropdown button.red { color: #da7975; }
