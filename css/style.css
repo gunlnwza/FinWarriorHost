@@ -6,6 +6,7 @@
   --text: #1a1a1a;
   --text-muted: #888;
   --shadow: rgba(0,0,0,0.08);
+  --shadow-mid: rgba(0,0,0,0.13);
   --shadow-deep: rgba(0,0,0,0.18);
 }
 
@@ -198,7 +199,7 @@ body {
 
 .dice-scene:hover:not(.just-rolled) .die {
   transform: translateY(-4px);
-  box-shadow: 0 10px 28px var(--shadow-deep);
+  box-shadow: 0 10px 28px var(--shadow-mid);
 }
 
 .die {
@@ -243,9 +244,7 @@ body {
 
 .economics-cycle-box {
   flex: 1;
-  /* border-radius: 12px; */
   overflow: hidden;
-  /* box-shadow: 0 4px 16px var(--shadow); */
   display: flex;
   flex-direction: column;
   border-right: 1px solid var(--border);
@@ -299,6 +298,7 @@ body {
   transform: translateX(-50%);
   object-fit: contain;
   pointer-events: none;
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4));
 }
 
 .knight.landing {
