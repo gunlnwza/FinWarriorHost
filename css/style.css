@@ -161,6 +161,12 @@ main {
 
 .deck-menu-btn:hover { color: var(--border-strong); }
 
+.deck-zone:has(.card-slot.active) .deck-menu-btn {
+  opacity: 0.35;
+  pointer-events: none;
+  cursor: default;
+}
+
 .deck-dropdown {
   position: absolute;
   top: calc(100% + 4px);
