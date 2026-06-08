@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Fin Warrior</title>
+<link rel="icon" type="image/png" href="assets/knight.png">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -54,6 +55,44 @@
   </div>
 </div>
 
+<div class="economics-cycle-row">
+  <div class="economics-cycle-box expansion">
+    <p>Expansion</p>
+    <p>ระยะฟื้นตัว</p>
+    <div class="color-blob-row">
+      <span class="color-blob" data-cell="0"></span>
+      <span class="color-blob" data-cell="1"></span>
+    </div>
+  </div>
+
+  <div class="economics-cycle-box peak">
+    <p>Boom</p>
+    <p>ระยะเฟื่องฟู</p>
+    <div class="color-blob-row">
+      <span class="color-blob" data-cell="2"></span>
+      <span class="color-blob" data-cell="3"></span>
+    </div>
+  </div>
+
+  <div class="economics-cycle-box recession">
+    <p>Recession</p>
+    <p>ระยะถดถอย</p>
+    <div class="color-blob-row">
+      <span class="color-blob" data-cell="4"></span>
+      <span class="color-blob" data-cell="5"></span>
+    </div>
+  </div>
+
+  <div class="economics-cycle-box trough">
+    <p>Depression</p>
+    <p>ระยะตกต่ำ</p>
+    <div class="color-blob-row">
+      <span class="color-blob" data-cell="6"></span>
+      <span class="color-blob" data-cell="7"></span>
+    </div>
+  </div>
+</div>
+
 <!---------------------------------------------------------------------------->
 <!-- BACKGROUND -->
 <!---------------------------------------------------------------------------->
@@ -87,6 +126,7 @@
 </div>
 
 <script src="js/state.js"></script>
+<script src="js/board.js"></script>
 <script src="js/deck.js"></script>
 <script src="js/dice.js"></script>
 

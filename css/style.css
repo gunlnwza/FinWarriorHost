@@ -6,6 +6,7 @@
   --text: #1a1a1a;
   --text-muted: #888;
   --shadow: rgba(0,0,0,0.08);
+  --shadow-mid: rgba(0,0,0,0.13);
   --shadow-deep: rgba(0,0,0,0.18);
 }
 
@@ -107,13 +108,17 @@ body {
   position: absolute;
   top: calc(100% + 4px);
   right: 0;
-  background: none;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: 0 4px 16px var(--shadow-deep);
   white-space: nowrap;
   z-index: 10;
   opacity: 0;
   visibility: hidden;
   transform: translateY(-4px);
   transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
+  overflow: hidden;
 }
 
 .deck-menu.open .deck-dropdown {
@@ -128,7 +133,7 @@ body {
   background: none;
   border: none;
   border-bottom: 1px solid var(--border);
-  padding: 6px 4px;
+  padding: 10px 20px;
   font-size: 0.8rem;
   color: var(--border);
   cursor: pointer;
@@ -140,15 +145,18 @@ body {
 
 .deck-dropdown button:hover { color: var(--text-muted); }
 
-.deck-stack.shuffling { animation: deckShake 0.5s ease-in-out; }
+.deck-stack.shuffling { animation: deckShake 1s ease-in-out; }
 
 @keyframes deckShake {
-  0%   { transform: rotate(0deg) scale(1); }
-  20%  { transform: rotate(-4deg) scale(1.03); }
-  40%  { transform: rotate(3deg) scale(0.97); }
-  60%  { transform: rotate(-2deg) scale(1.02); }
-  80%  { transform: rotate(1deg) scale(0.99); }
-  100% { transform: rotate(0deg) scale(1); }
+  0%,  100% { transform: translateY(0); }
+  10% { transform: translateY(-20px); }
+  20% { transform: translateY(0px); }
+  30% { transform: translateY(-15px); }
+  40% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+  60% { transform: translateY(0px); }
+  70% { transform: translateY(-10px); }
+  80% { transform: translateY(0px); }
 }
 
 /* ── INSPECT MODAL ── */
@@ -198,7 +206,7 @@ body {
 
 .dice-scene:hover:not(.just-rolled) .die {
   transform: translateY(-4px);
-  box-shadow: 0 10px 28px var(--shadow-deep);
+  box-shadow: 0 10px 28px var(--shadow-mid);
 }
 
 .die {
@@ -228,6 +236,113 @@ body {
   82%  { transform: rotate(3deg) scale(0.99); opacity: 0.5; }
   100% { transform: rotate(0deg) scale(1); opacity: 1; }
 }
+
+/* ECONOMIC CYCLE */
+
+.economics-cycle-row {
+  display: flex;
+  margin-top: 2rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  width: 100%;
+  max-width: 1000px;
+}
+
+.economics-cycle-box {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--border);
+  transition: opacity 0.3s ease;
+}
+
+.economics-cycle-box:last-child {
+  border-right: none;
+}
+
+.economics-cycle-box.inactive {
+  opacity: 0.5;
+}
+
+.economics-cycle-box > p {
+  font-size: 2rem;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 900;
+  padding: 12px 14px 10px;
+  line-height: 1.3;
+}
+
+.economics-cycle-box > p:nth-child(2) {
+  font-size: 1.1rem;
+  padding-top: 0;
+  opacity: 0.75;
+}
+
+.color-blob-row {
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  padding: 12px 14px;
+  margin-top: auto;
+}
+
+.color-blob {
+  position: relative;
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+}
+
+.knight {
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  object-fit: contain;
+  pointer-events: none;
+  filter: drop-shadow(0 4px 6px var(--shadow-deep));
+}
+
+.knight.landing {
+  animation: knightLand 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes knightLand {
+  0%   { transform: translateX(-50%) scale(0.75); opacity: 0; }
+  60%  { transform: translateX(-50%) scale(1.05); opacity: 1; }
+  100% { transform: translateX(-50%) scale(1); }
+}
+
+.expansion {
+  background-color: #c5a14c;
+  color: #4b412c;
+}
+.expansion .color-blob { background-color: #c5a14c; }
+
+.peak {
+  background-color: #89cb5c;
+  color: #385723;
+}
+.peak .color-blob { background-color: #89cb5c; }
+
+.recession {
+  background-color: #ec8f5e;
+  color: #553827;
+}
+.recession .color-blob { background-color: #ec8f5e; }
+
+.trough {
+  background-color: #ee8484;
+  color: #573636;
+}
+.trough .color-blob { background-color: #ee8484; }
+
 
 /* ── MODAL OVERLAY ── */
 .modal {
