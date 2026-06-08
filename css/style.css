@@ -490,7 +490,7 @@ main {
 .card-front-face {
   transform: rotateY(180deg);
   background: var(--bg);
-  border: 1.5px solid var(--border-strong);
+  border-radius: 10px;
 }
 
 .card-front-face img {
@@ -499,14 +499,20 @@ main {
   object-fit: cover;
 }
 
-.modal.daily-alert .card-front-face,
-.card-front-face.daily-alert {
+.modal.daily-alert .card-front-face {
   border: 15px solid #c14444;
 }
 
-.modal.economics-alert .card-front-face,
-.card-front-face.economics-alert {
+.modal.economics-alert .card-front-face {
   border: 15px solid #ffffff;
+}
+
+.card-front-face.daily-alert {
+  border: 9px solid #c14444;
+}
+
+.card-front-face.economics-alert {
+  border: 9px solid #ffffff;
 }
 
 .modal-hint {
