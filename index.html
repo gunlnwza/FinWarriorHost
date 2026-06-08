@@ -56,6 +56,15 @@
 <!---------------------------------------------------------------------------->
 <main>
 <div class="table">
+  <!-- DICE -->
+  <div class="dice-zone">
+    <div class="dice-scene" id="rollBtn" onclick="rollDice()">
+      <div class="die" id="die">
+        <img src="assets/dice/one.png" alt="">
+      </div>
+    </div>
+  </div>
+  
   <!-- DAILY ALERT DECK -->
   <div class="deck-zone">
     <div class="deck-row">
@@ -108,15 +117,6 @@
       <div class="deck-dropdown">
         <button onclick="openInspectModal('economics'); closeDeckMenus()">ดูไพ่</button>
         <button class="red" onclick="shuffleDeck('economics'); closeDeckMenus()">สับไพ่</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- DICE -->
-  <div class="dice-zone">
-    <div class="dice-scene" id="rollBtn" onclick="rollDice()">
-      <div class="die" id="die">
-        <img src="assets/dice/one.png" alt="">
       </div>
     </div>
   </div>
