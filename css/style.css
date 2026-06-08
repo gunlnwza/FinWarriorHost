@@ -17,10 +17,29 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   font-family: system-ui, -apple-system, sans-serif;
   color: var(--text);
+}
+
+header {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.logo {
+  height: 72px;
+  width: auto;
+  display: block;
+}
+
+main {
+  flex: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.5rem;
 }
 
 .table {
@@ -92,7 +111,7 @@ body {
 .deck-menu-btn {
   background: none;
   border: none;
-  color: var(--border);
+  color: var(--text-muted);
   font-size: 1rem;
   letter-spacing: 0.1em;
   cursor: pointer;
@@ -102,7 +121,7 @@ body {
   display: block;
 }
 
-.deck-menu-btn:hover { color: var(--text-muted); }
+.deck-menu-btn:hover { color: var(--border-strong); }
 
 .deck-dropdown {
   position: absolute;
@@ -134,16 +153,18 @@ body {
   border: none;
   border-bottom: 1px solid var(--border);
   padding: 10px 20px;
-  font-size: 0.8rem;
-  color: var(--border);
+  font-size: 1rem;
+  color: var(--text-muted);
   cursor: pointer;
   text-align: right;
   transition: color 0.15s;
 }
+.deck-dropdown button.red { color: #da7975; }
 
 .deck-dropdown button:last-child { border-bottom: none; }
 
-.deck-dropdown button:hover { color: var(--text-muted); }
+.deck-dropdown button:hover { color: var(--border-strong); }
+.deck-dropdown button.red:hover { color: #e90800; }
 
 .deck-stack.shuffling { animation: deckShake 1s ease-in-out; }
 
@@ -241,7 +262,7 @@ body {
 
 .economics-cycle-row {
   display: flex;
-  margin-top: 2rem;
+  margin-top: 3rem;
   border: 1px solid var(--border);
   border-radius: 10px;
   overflow: hidden;
@@ -307,6 +328,28 @@ body {
   object-fit: contain;
   pointer-events: none;
   filter: drop-shadow(0 4px 6px var(--shadow-deep));
+}
+
+.knight-tooltip {
+  position: absolute;
+  top: calc(10% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.75);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-size: 0.7rem;
+  white-space: nowrap;
+  text-align: center;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  z-index: 20;
+}
+
+.economics-cycle-box:hover .knight-tooltip {
+  opacity: 1;
 }
 
 .knight.landing {

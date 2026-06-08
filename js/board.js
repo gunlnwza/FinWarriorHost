@@ -32,13 +32,17 @@ const knight = new Knight();
 // ── RENDER ──
 
 function renderKnight() {
-  document.querySelectorAll('.color-blob .knight').forEach(el => el.remove());
+  document.querySelectorAll('.color-blob .knight, .color-blob .knight-tooltip').forEach(el => el.remove());
   const cell = document.querySelector(`.color-blob[data-cell="${knight.position}"]`);
   if (!cell) return;
   const img = document.createElement('img');
   img.src = 'assets/knight.png';
   img.alt = 'knight';
+  const tooltip = document.createElement('span');
+  tooltip.className = 'knight-tooltip';
+  tooltip.innerHTML = 'กด A หรือ D<br>เพื่อเดินตัวอัศวิน<br>';
   cell.appendChild(img);
+  cell.appendChild(tooltip);
   img.className = 'knight landing';
 
   const activeCycle = knight.getCell().cycle;
@@ -50,8 +54,12 @@ function renderKnight() {
 // ── CONTROLS ──
 
 document.addEventListener('keydown', (e) => {
-  if (e.key === 'd' || e.key === 'D') { knight.move(1);  renderKnight(); }
-  if (e.key === 'a' || e.key === 'A') { knight.move(-1); renderKnight(); }
+  if (e.key === 'd' || e.key === 'D' || e.key == "ก" || e.key == "ฏ") {
+    knight.move(1);  renderKnight();
+  }
+  if (e.key === 'a' || e.key === 'A' || e.key == "ฟ" || e.key == "ฤ") {
+    knight.move(-1); renderKnight();
+  }
 });
 
 document.addEventListener('DOMContentLoaded', renderKnight);
