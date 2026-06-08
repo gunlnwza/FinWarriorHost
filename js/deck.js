@@ -171,6 +171,7 @@ function openInspectModal(deckId) {
     ...deck.cards.slice(0, deck.cursor),
   ];
   const grid = document.getElementById('inspectGrid');
+  grid.className = `inspect-grid ${deckId}-alert`;
   grid.innerHTML = ordered
     .map(c => `<img src="${c.imagePath}" alt="${c.id}">`)
     .join('');

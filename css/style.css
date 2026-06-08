@@ -246,8 +246,16 @@ main {
 .inspect-grid img {
   width: 100%;
   border-radius: 6px;
-  border: 1.5px solid var(--border);
   display: block;
+}
+
+.inspect-grid.daily-alert img {
+  border: 7px solid #c14444;
+}
+
+.inspect-grid.economics-alert img {
+  border: 7px solid #ffffff;
+  box-shadow: 0 0 0 1px #e0e0e0;
 }
 
 /* ── DICE ── */
