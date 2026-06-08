@@ -134,16 +134,18 @@ body {
   border: none;
   border-bottom: 1px solid var(--border);
   padding: 10px 20px;
-  font-size: 0.8rem;
-  color: var(--border);
+  font-size: 1rem;
+  color: var(--text-muted);
   cursor: pointer;
   text-align: right;
   transition: color 0.15s;
 }
+.deck-dropdown button.red { color: #da7975; }
 
 .deck-dropdown button:last-child { border-bottom: none; }
 
-.deck-dropdown button:hover { color: var(--text-muted); }
+.deck-dropdown button:hover { color: var(--border-strong); }
+.deck-dropdown button.red:hover { color: #e90800; }
 
 .deck-stack.shuffling { animation: deckShake 1s ease-in-out; }
 
