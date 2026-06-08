@@ -23,6 +23,15 @@ body {
   color: var(--text);
 }
 
+.logo {
+  position: fixed;
+  top: 1.25rem;
+  left: 1.25rem;
+  height: 90px;
+  width: auto;
+  pointer-events: none;
+}
+
 .table {
   display: flex;
   gap: clamp(3rem, 8vw, 8rem);
