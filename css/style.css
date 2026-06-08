@@ -42,6 +42,13 @@ main {
   padding: 2rem 1.5rem;
 }
 
+.game-area {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 3rem;
+}
+
 .table {
   display: flex;
   gap: clamp(3rem, 8vw, 8rem);
@@ -63,8 +70,8 @@ main {
 }
 
 .card-slot {
-  width: 160px;
-  height: 235px;
+  width: 185px;
+  height: 270px;
   cursor: pointer;
   opacity: 0;
   pointer-events: none;
@@ -85,8 +92,8 @@ main {
 
 .deck-stack {
   position: relative;
-  width: 160px;
-  height: 235px;
+  width: 185px;
+  height: 270px;
   cursor: pointer;
 }
 
@@ -287,12 +294,9 @@ main {
 
 .economics-cycle-row {
   display: flex;
-  margin-top: 3rem;
   border: 1px solid var(--border);
   border-radius: 10px;
   overflow: hidden;
-  width: 100%;
-  max-width: 1000px;
 }
 
 .economics-cycle-box {
