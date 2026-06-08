@@ -108,13 +108,17 @@ body {
   position: absolute;
   top: calc(100% + 4px);
   right: 0;
-  background: none;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: 0 4px 16px var(--shadow-deep);
   white-space: nowrap;
   z-index: 10;
   opacity: 0;
   visibility: hidden;
   transform: translateY(-4px);
   transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
+  overflow: hidden;
 }
 
 .deck-menu.open .deck-dropdown {
@@ -129,7 +133,7 @@ body {
   background: none;
   border: none;
   border-bottom: 1px solid var(--border);
-  padding: 6px 4px;
+  padding: 10px 20px;
   font-size: 0.8rem;
   color: var(--border);
   cursor: pointer;
