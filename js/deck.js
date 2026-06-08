@@ -82,11 +82,39 @@ const cardFlipInner = document.getElementById('cardFlipInner');
 const cardRevealImg = document.getElementById('cardRevealImg');
 const cardBackImg   = document.querySelector('#cardFlipInner .card-back-face img');
 
+const cardSlots = {
+  daily:      document.getElementById('cardSlot-daily'),
+  economics:  document.getElementById('cardSlot-economics'),
+};
+const cardFlips = {
+  daily:      document.getElementById('cardFlip-daily'),
+  economics:  document.getElementById('cardFlip-economics'),
+};
+const cardImgs = {
+  daily:      document.getElementById('cardRevealImg-daily'),
+  economics:  document.getElementById('cardRevealImg-economics'),
+};
+
 // ── DRAW CARD ──
 function drawCard(deckId) {
-  if (isAnimating) return;
+  if (isAnimating || cardSlots[deckId].classList.contains('active')) return;
+  isAnimating = true;
   const card = DECKS[deckId].draw();
-  openCardModal(card.imagePath, DECKS[deckId].backImagePath, deckId);
+  cardImgs[deckId].src = card.imagePath;
+  cardFlips[deckId].classList.remove('revealed');
+  cardSlots[deckId].classList.add('active');
+  setTimeout(() => { cardFlips[deckId].classList.add('revealed'); isAnimating = false; }, 50);
+}
+
+function returnCard(deckId) {
+  if (isAnimating) return;
+  isAnimating = true;
+  cardFlips[deckId].classList.remove('revealed');
+  cardSlots[deckId].classList.add('returning');
+  setTimeout(() => {
+    cardSlots[deckId].classList.remove('active', 'returning');
+    isAnimating = false;
+  }, 300);
 }
 
 function openCardModal(src, backSrc, deckId) {

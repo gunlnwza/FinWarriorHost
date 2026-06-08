@@ -56,6 +56,33 @@ main {
   gap: 5px;
 }
 
+.deck-row {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.card-slot {
+  width: 160px;
+  height: 235px;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-12px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.card-slot.active {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateX(0);
+}
+
+.card-slot.returning {
+  opacity: 0;
+  transform: translateX(-12px);
+}
+
 .deck-stack {
   position: relative;
   width: 160px;
@@ -472,11 +499,13 @@ main {
   object-fit: cover;
 }
 
-.modal.daily-alert .card-front-face {
+.modal.daily-alert .card-front-face,
+.card-front-face.daily-alert {
   border: 15px solid #c14444;
 }
 
-.modal.economics-alert .card-front-face {
+.modal.economics-alert .card-front-face,
+.card-front-face.economics-alert {
   border: 15px solid #ffffff;
 }
 
