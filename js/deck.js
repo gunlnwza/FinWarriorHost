@@ -107,14 +107,8 @@ function drawCard(deckId) {
 }
 
 function returnCard(deckId) {
-  if (isAnimating) return;
-  isAnimating = true;
   cardFlips[deckId].classList.remove('revealed');
-  cardSlots[deckId].classList.add('returning');
-  setTimeout(() => {
-    cardSlots[deckId].classList.remove('active', 'returning');
-    isAnimating = false;
-  }, 300);
+  cardSlots[deckId].classList.remove('active');
 }
 
 function openCardModal(src, backSrc, deckId) {

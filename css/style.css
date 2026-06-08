@@ -85,11 +85,6 @@ main {
   transform: translateX(0);
 }
 
-.card-slot.returning {
-  opacity: 0;
-  transform: translateX(-12px);
-}
-
 .deck-stack {
   position: relative;
   width: 185px;
