@@ -309,6 +309,27 @@ body {
   filter: drop-shadow(0 4px 6px var(--shadow-deep));
 }
 
+.knight-tooltip {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.75);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-size: 0.7rem;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  z-index: 20;
+}
+
+.economics-cycle-box:hover .knight-tooltip {
+  opacity: 1;
+}
+
 .knight.landing {
   animation: knightLand 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
