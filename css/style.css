@@ -95,6 +95,7 @@ main {
   width: 185px;
   height: 270px;
   cursor: pointer;
+  transition: opacity 0.2s ease;
 }
 
 /* Stack depth layers */
@@ -136,6 +137,7 @@ main {
 
 .deck-row:has(.card-slot.active) .deck-stack {
   cursor: default;
+  opacity: 0.5;
 }
 
 .deck-row:has(.card-slot.active) .deck-stack:hover .card-back {
