@@ -17,19 +17,27 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   font-family: system-ui, -apple-system, sans-serif;
   color: var(--text);
 }
 
+header {
+  padding: 1.25rem 1.5rem;
+}
+
 .logo {
-  position: fixed;
-  top: 1.25rem;
-  left: 1.25rem;
-  height: 90px;
+  height: 72px;
   width: auto;
-  opacity: 0.9;
+  display: block;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.5rem;
 }
 
 .table {
@@ -252,7 +260,7 @@ body {
 
 .economics-cycle-row {
   display: flex;
-  margin-top: 2rem;
+  margin-top: 3rem;
   border: 1px solid var(--border);
   border-radius: 10px;
   overflow: hidden;
