@@ -134,6 +134,15 @@ main {
 
 .deck-stack:active .card-back { transform: translateY(-1px); }
 
+.deck-row:has(.card-slot.active) .deck-stack {
+  cursor: default;
+}
+
+.deck-row:has(.card-slot.active) .deck-stack:hover .card-back {
+  transform: none;
+  box-shadow: 0 4px 16px var(--shadow);
+}
+
 /* ── DECK MENU ── */
 .deck-menu {
   position: relative;
