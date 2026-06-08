@@ -10,8 +10,6 @@ Open `index.html` directly in a browser:
 open index.html
 ```
 
-> Safari blocks favicons on `file://` pages. Serve with `python3 -m http.server 8000` and open `http://localhost:8000` for full fidelity.
-
 ## What it does
 
 The host controller manages the shared game state visible to all players:
