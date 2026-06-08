@@ -311,7 +311,7 @@ body {
 
 .knight-tooltip {
   position: absolute;
-  bottom: calc(100% + 8px);
+  top: calc(10% + 8px);
   left: 50%;
   transform: translateX(-50%);
   background: rgba(0, 0, 0, 0.75);
@@ -320,6 +320,7 @@ body {
   border-radius: 6px;
   font-size: 0.7rem;
   white-space: nowrap;
+  text-align: center;
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.2s ease;
