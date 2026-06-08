@@ -111,7 +111,7 @@ main {
 .deck-menu-btn {
   background: none;
   border: none;
-  color: var(--border);
+  color: var(--text-muted);
   font-size: 1rem;
   letter-spacing: 0.1em;
   cursor: pointer;
@@ -121,7 +121,7 @@ main {
   display: block;
 }
 
-.deck-menu-btn:hover { color: var(--text-muted); }
+.deck-menu-btn:hover { color: var(--border-strong); }
 
 .deck-dropdown {
   position: absolute;
