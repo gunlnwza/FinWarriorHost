@@ -23,6 +23,7 @@ body {
 
 header {
   padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--border);
 }
 
 .logo {
@@ -33,6 +34,7 @@ header {
 
 main {
   flex: 1;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
