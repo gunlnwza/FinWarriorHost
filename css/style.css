@@ -248,6 +248,7 @@ body {
   display: flex;
   flex-direction: column;
   border-right: 1px solid var(--border);
+  transition: opacity 0.3s ease;
 }
 
 .economics-cycle-box:last-child {
@@ -298,7 +299,7 @@ body {
   transform: translateX(-50%);
   object-fit: contain;
   pointer-events: none;
-  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4));
+  filter: drop-shadow(0 4px 6px var(--shadow-deep));
 }
 
 .knight.landing {
