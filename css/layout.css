@@ -1,0 +1,33 @@
+header {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.logo {
+  height: 72px;
+  width: auto;
+  display: block;
+}
+
+main {
+  flex: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.5rem;
+}
+
+.game-area {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 3rem;
+}
+
+.table {
+  display: flex;
+  gap: clamp(3rem, 8vw, 8rem);
+  align-items: center;
+}

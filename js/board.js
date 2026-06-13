@@ -35,12 +35,15 @@ function renderKnight() {
   document.querySelectorAll('.color-blob .knight, .color-blob .knight-tooltip').forEach(el => el.remove());
   const cell = document.querySelector(`.color-blob[data-cell="${knight.position}"]`);
   if (!cell) return;
+  
   const img = document.createElement('img');
   img.src = 'assets/knight.png';
   img.alt = 'knight';
+
   const tooltip = document.createElement('span');
   tooltip.className = 'knight-tooltip';
   tooltip.innerHTML = 'กด A หรือ D<br>เพื่อเดินนักรบ<br>';
+
   cell.appendChild(img);
   cell.appendChild(tooltip);
   img.className = 'knight landing';
@@ -53,12 +56,14 @@ function renderKnight() {
 
 // ── CONTROLS ──
 
+const SOUND_GAP = 100;
+
 document.addEventListener('keydown', (e) => {
-  if (e.key === 'd' || e.key === 'D' || e.key == "ก" || e.key == "ฏ") {
-    knight.move(1);  renderKnight();
+  if (e.key === 'd' || e.key === 'D' || e.key === "ก" || e.key === "ฏ") {
+    playSfx(SFX.knightMove, SOUND_GAP, 0.1); knight.move(1);  renderKnight();
   }
-  if (e.key === 'a' || e.key === 'A' || e.key == "ฟ" || e.key == "ฤ") {
-    knight.move(-1); renderKnight();
+  if (e.key === 'a' || e.key === 'A' || e.key === "ฟ" || e.key === "ฤ") {
+    playSfx(SFX.knightMove, SOUND_GAP, 0.1); knight.move(-1); renderKnight();
   }
 });
 
