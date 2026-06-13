@@ -29,7 +29,7 @@ async function loadSound(path) {
 
 const lastPlayed = new WeakMap();
 
-function playSfx(buffer, minGap = 0, pitchVariance = 0, pitchTrans = 0) {
+function playSfx(buffer, minGap = 0, pitchVariance = 0, pitchTrans = 0, volume = 1) {
   if (!buffer) return;
   if (minGap > 0) {
     const last = lastPlayed.get(buffer) ?? 0;
@@ -41,6 +41,9 @@ function playSfx(buffer, minGap = 0, pitchVariance = 0, pitchTrans = 0) {
   source.buffer = buffer;
   if (pitchVariance > 0)
     source.playbackRate.value = 1 + (Math.random() * 2 - 1) * pitchVariance + pitchTrans;
-  source.connect(audioCtx.destination);
+  const gain = audioCtx.createGain();
+  gain.gain.value = volume;
+  source.connect(gain);
+  gain.connect(audioCtx.destination);
   source.start(0);
 }
