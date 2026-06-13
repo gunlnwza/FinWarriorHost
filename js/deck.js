@@ -39,6 +39,7 @@ class CardDeck {
 
 
 // ── STATE ──
+// Use 2 trade_asset and 2 political_problem cards, as per the game spec.
 const DECKS = {
   daily: new CardDeck('daily', 'Daily Alert', 'assets/cards/daily_alert/back.png', [
     new Card('air_pollution',       'daily', 'assets/cards/daily_alert/air_pollution.png'),
@@ -77,11 +78,6 @@ const DECKS = {
 Object.values(DECKS).forEach(deck => deck.shuffle());
 
 // ── DOM (cached once at startup) ──
-const cardModal    = document.getElementById('cardModal');
-const cardFlipInner = document.getElementById('cardFlipInner');
-const cardRevealImg = document.getElementById('cardRevealImg');
-const cardBackImg   = document.querySelector('#cardFlipInner .card-back-face img');
-
 const cardSlots = {
   daily:      document.getElementById('cardSlot-daily'),
   economics:  document.getElementById('cardSlot-economics'),
@@ -99,6 +95,7 @@ const cardImgs = {
 function drawCard(deckId) {
   if (isAnimating || cardSlots[deckId].classList.contains('active')) return;
   isAnimating = true;
+  playSfx(SFX.cardDraw, 0, 0.1);
   const card = DECKS[deckId].draw();
   cardImgs[deckId].src = card.imagePath;
   cardFlips[deckId].classList.remove('revealed');
@@ -107,37 +104,9 @@ function drawCard(deckId) {
 }
 
 function returnCard(deckId) {
+  playSfx(SFX.cardDraw, 0, 0.1, -0.2);
   cardFlips[deckId].classList.remove('revealed');
   cardSlots[deckId].classList.remove('active');
-}
-
-function openCardModal(src, backSrc, deckId) {
-  isAnimating = true;
-
-  cardRevealImg.src = src;
-  cardBackImg.src = backSrc;
-
-  cardFlipInner.classList.remove('revealed');
-  cardModal.classList.toggle('daily-alert', deckId === 'daily');
-  cardModal.classList.toggle('economics-alert', deckId === 'economics');
-  cardModal.classList.add('active');
-
-  setTimeout(() => {
-    cardFlipInner.classList.add('revealed');
-    isAnimating = false;
-  }, 200);
-}
-
-function dismissCard() {
-  if (isAnimating) return;
-  isAnimating = true;
-
-  cardFlipInner.classList.remove('revealed');
-
-  setTimeout(() => {
-    cardModal.classList.remove('active');
-    isAnimating = false;
-  }, 300);
 }
 
 // ── DECK MENU ──
@@ -157,6 +126,7 @@ document.addEventListener('click', closeDeckMenus);
 // ── SHUFFLE ──
 function shuffleDeck(deckId) {
   if (isAnimating) return;
+  playSfx(SFX.shuffle, 0, 0.1);
   DECKS[deckId].shuffle();
   const stack = document.getElementById(`deckStack-${deckId}`);
   stack.classList.add('shuffling');

@@ -26,6 +26,7 @@ rollBtn.addEventListener('mouseleave', () => rollBtn.classList.remove('just-roll
 function rollDice() {
   if (isAnimating || rollBtn.classList.contains('just-rolled')) return;
   isAnimating = true;
+  playSfx(SFX.diceRoll, 0, 0.20, -0.1);
   rollBtn.classList.add('just-rolled');
 
   const result = randomFace();
