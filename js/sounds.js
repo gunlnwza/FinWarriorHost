@@ -36,7 +36,7 @@ function playSfx(buffer, minGap = 0, pitchVariance = 0, pitchTrans = 0, volume =
     if (Date.now() - last < minGap) return;
     lastPlayed.set(buffer, Date.now());
   }
-  if (audioCtx.state === 'suspended') audioCtx.resume();
+  const resume = audioCtx.state === 'suspended' ? audioCtx.resume() : Promise.resolve();
   const source = audioCtx.createBufferSource();
   source.buffer = buffer;
   if (pitchVariance > 0)
@@ -45,5 +45,5 @@ function playSfx(buffer, minGap = 0, pitchVariance = 0, pitchTrans = 0, volume =
   gain.gain.value = volume;
   source.connect(gain);
   gain.connect(audioCtx.destination);
-  source.start(0);
+  resume.then(() => source.start(0));
 }
