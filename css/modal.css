@@ -9,7 +9,7 @@
   opacity: 0;
   pointer-events: none;
   visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
+  transition: opacity 0.35s ease, visibility 0.35s ease;
 }
 
 .modal.active {
@@ -32,11 +32,19 @@
   flex-direction: column;
   align-items: center;
   gap: 2rem;
+  transform: scale(0.95);
+  transition: transform 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.modal.active .modal-content {
+  transform: scale(1);
 }
 
 /* ── CARD MODAL ── */
 .card-modal-wrapper {
   perspective: 1000px;
+  width: min(60vw, 340px);
+  height: min(84vw, 500px);
 }
 
 .card-flip-inner {
@@ -97,6 +105,30 @@
 
 .card-front-face.economics-alert {
   border: 9px solid #ffffff;
+}
+
+/* ── TABLE CARD DISMISS BUTTON ── */
+.card-dismiss {
+  position: absolute;
+  top: -2.1rem;
+  right: 0;
+  background: none;
+  border: none;
+  color: #c14444;
+  font-size: 2.0rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+  opacity: 0;
+  transition: opacity 0.15s ease, color 0.15s ease;
+}
+
+.card-slot.active .card-dismiss {
+  opacity: 1;
+}
+
+.card-dismiss:hover {
+  color: #e90800;
 }
 
 .modal-hint {

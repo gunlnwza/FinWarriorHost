@@ -21,13 +21,16 @@ function randomFace() {
   return DICE_FACES[Math.floor(Math.random() * DICE_FACES.length)];
 }
 
-rollBtn.addEventListener('mouseleave', () => rollBtn.classList.remove('just-rolled'));
+function renderDice() {
+  rollBtn.classList.toggle('just-rolled', !STATE.dice.ready);
+}
 
 function rollDice() {
-  if (isAnimating || rollBtn.classList.contains('just-rolled')) return;
-  isAnimating = true;
+  if (STATE.animating || !STATE.dice.ready) return;
+  STATE.animating  = true;
+  STATE.dice.ready = false;
+  renderDice();
   playSfx(SFX.diceRoll, 0, 0.20, -0.1, 0.30);
-  rollBtn.classList.add('just-rolled');
 
   const result = randomFace();
   rollBtn.disabled = true;
@@ -42,7 +45,6 @@ function rollDice() {
     return next;
   }
 
-  const DICE_AIR_TIME = 800;
   const DICE_FACE_SHOW_TIME = 100;
   const cycle = setInterval(
     () => showFace(randomFaceNoRepeat()),
@@ -58,6 +60,11 @@ function rollDice() {
     dieEl.classList.remove('rolling');
     showFace(result);
     rollBtn.disabled = false;
-    isAnimating = false;
-  }, DICE_AIR_TIME);
+    STATE.animating = false;
+  }, DURATIONS.diceRoll);
+
+  setTimeout(() => {
+    STATE.dice.ready = true;
+    renderDice();
+  }, DURATIONS.diceReady);
 }

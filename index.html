@@ -9,13 +9,13 @@
 
 <!-- Preload assets -->
 <link rel="preload" as="image" href="assets/knight.png">
-<link rel="preload" as="image" href="assets/logo.png">
+<!-- <link rel="preload" as="image" href="assets/logo.png"> -->
 <link rel="preload" as="image" href="assets/dice/one.png">
-<link rel="preload" as="image" href="assets/dice/one_star.png">
+<!-- <link rel="preload" as="image" href="assets/dice/one_star.png">
 <link rel="preload" as="image" href="assets/dice/two.png">
 <link rel="preload" as="image" href="assets/dice/two_star.png">
 <link rel="preload" as="image" href="assets/dice/three.png">
-<link rel="preload" as="image" href="assets/dice/three_star.png">
+<link rel="preload" as="image" href="assets/dice/three_star.png"> -->
 <link rel="preload" as="image" href="assets/cards/daily_alert/back.png">
 <link rel="preload" as="image" href="assets/cards/daily_alert/air_pollution.png">
 <link rel="preload" as="image" href="assets/cards/daily_alert/dividend_agro.png">
@@ -68,8 +68,8 @@
   
   <!-- DAILY ALERT DECK -->
   <div class="deck-zone">
-    <div class="deck-menu">
-      <button class="deck-menu-btn" onclick="toggleDeckMenu(this); event.stopPropagation()">···</button>
+    <div class="deck-menu" data-deck="daily">
+      <button class="deck-menu-btn" onclick="toggleDeckMenu('daily'); event.stopPropagation()">···</button>
       <div class="deck-dropdown">
         <button onclick="openInspectModal('daily'); closeDeckMenus()">ดูไพ่ทั้งหมด</button>
         <button class="red" onclick="shuffleDeck('daily'); closeDeckMenus()">สับไพ่</button>
@@ -81,23 +81,21 @@
           <img src="assets/cards/daily_alert/back.png" alt="">
         </div>
       </div>
-      <div class="card-slot" id="cardSlot-daily" onclick="returnCard('daily')">
-        <div class="card-flip-inner" id="cardFlip-daily">
-          <!-- <div class="card-back-face">
-            <img src="assets/cards/daily_alert/back.png" alt="">
-          </div> -->
+      <div class="card-slot" id="cardSlot-daily">
+        <div class="card-flip-inner" id="cardFlip-daily" onclick="openCardModal('daily')">
           <div class="card-front-face daily-alert">
             <img id="cardRevealImg-daily" src="" alt="">
           </div>
         </div>
+        <button class="card-dismiss" onclick="returnCard('daily'); event.stopPropagation()">✕</button>
       </div>
     </div>
   </div>
 
   <!-- ECONOMICS EVENT DECK -->
   <div class="deck-zone">
-    <div class="deck-menu">
-      <button class="deck-menu-btn" onclick="toggleDeckMenu(this); event.stopPropagation()">···</button>
+    <div class="deck-menu" data-deck="economics">
+      <button class="deck-menu-btn" onclick="toggleDeckMenu('economics'); event.stopPropagation()">···</button>
       <div class="deck-dropdown">
         <button onclick="openInspectModal('economics'); closeDeckMenus()">ดูไพ่ทั้งหมด</button>
         <button class="red" onclick="shuffleDeck('economics'); closeDeckMenus()">สับไพ่</button>
@@ -109,20 +107,21 @@
           <img src="assets/cards/economics_event/back.png" alt="">
         </div>
       </div>
-      <div class="card-slot" id="cardSlot-economics" onclick="returnCard('economics')">
-        <div class="card-flip-inner" id="cardFlip-economics">
-          <!-- <div class="card-back-face">
-            <img src="assets/cards/economics_event/back.png" alt="">
-          </div> -->
+      <div class="card-slot" id="cardSlot-economics">
+        <div class="card-flip-inner" id="cardFlip-economics" onclick="openCardModal('economics')">
           <div class="card-front-face economics-alert">
             <img id="cardRevealImg-economics" src="" alt="">
           </div>
         </div>
+        <button class="card-dismiss" onclick="returnCard('economics'); event.stopPropagation()">✕</button>
       </div>
     </div>
   </div>
 </div>
 
+<div class="board-section" id="boardSection">
+<button class="returns-chevron" onclick="toggleReturns()"></button>
+<div class="returns-panel" id="returnsPanel"></div>
 <div class="economics-cycle-row">
   <div class="economics-cycle-box expansion">
     <p>Expansion</p>
@@ -161,6 +160,7 @@
   </div>
 </div>
 </div>
+</div>
 </main>
 
 <!---------------------------------------------------------------------------->
@@ -168,19 +168,16 @@
 <!---------------------------------------------------------------------------->
 <!-- CARD MODAL -->
 <div class="modal" id="cardModal">
-  <div class="modal-backdrop"></div>
+  <div class="modal-backdrop" onclick="closeCardModal()"></div>
   <div class="modal-content">
     <div class="card-modal-wrapper">
       <div class="card-flip-inner" id="cardFlipInner">
-        <div class="card-back-face">
-          <img src="assets/cards/daily_alert/back.png" alt="">
-        </div>
         <div class="card-front-face">
           <img id="cardRevealImg" src="" alt="Card">
         </div>
       </div>
     </div>
-    <div class="modal-hint">คลิกข้างนอกเพื่อสอดไพ่เข้าใต้กอง</div>
+    <div class="modal-hint">คลิกข้างนอกเพื่อออก</div>
   </div>
 </div>
 

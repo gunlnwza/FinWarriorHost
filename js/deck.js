@@ -90,50 +90,118 @@ const cardImgs = {
   daily:      document.getElementById('cardRevealImg-daily'),
   economics:  document.getElementById('cardRevealImg-economics'),
 };
+const cardModal     = document.getElementById('cardModal');
+const cardFlipInner = document.getElementById('cardFlipInner');
+const cardRevealImg = document.getElementById('cardRevealImg');
+
+// ── RENDER ──
+
+function renderCards() {
+  for (const deckId of ['daily', 'economics']) {
+    const { drawn, flipped } = STATE.cards[deckId];
+    cardSlots[deckId].classList.toggle('active', drawn);
+    cardFlips[deckId].classList.toggle('revealed', flipped);
+  }
+}
+
+function renderMenus() {
+  for (const deckId of ['daily', 'economics']) {
+    document.querySelector(`.deck-menu[data-deck="${deckId}"]`)
+      .classList.toggle('open', STATE.menus[deckId]);
+  }
+}
+
+function renderCardModal() {
+  const open = STATE.cardModal !== null;
+  cardModal.classList.toggle('active', open);
+  if (open) {
+    const deckId = STATE.cardModal;
+    cardRevealImg.src = cardImgs[deckId].src;
+    cardModal.classList.toggle('daily-alert',     deckId === 'daily');
+    cardModal.classList.toggle('economics-alert', deckId === 'economics');
+  }
+}
+
+function renderInspectModal() {
+  document.getElementById('inspectModal').classList.toggle('active', STATE.inspectModal);
+}
 
 // ── DRAW CARD ──
+
 function drawCard(deckId) {
-  if (isAnimating || cardSlots[deckId].classList.contains('active')) return;
-  isAnimating = true;
+  if (STATE.animating || STATE.cards[deckId].drawn) return;
+  STATE.animating = true;
   playSfx(SFX.cardDraw, 0, 0.1);
   const card = DECKS[deckId].draw();
   cardImgs[deckId].src = card.imagePath;
-  cardFlips[deckId].classList.remove('revealed');
-  cardSlots[deckId].classList.add('active');
-  setTimeout(() => { cardFlips[deckId].classList.add('revealed'); isAnimating = false; }, 50);
+  STATE.cards[deckId].drawn   = true;
+  STATE.cards[deckId].flipped = false;
+  renderCards();
+  setTimeout(() => {
+    STATE.cards[deckId].flipped = true;
+    renderCards();
+    STATE.animating = false;
+  }, 50);
 }
 
 function returnCard(deckId) {
   playSfx(SFX.cardDraw, 0, 0.1, -0.2);
-  cardFlips[deckId].classList.remove('revealed');
-  cardSlots[deckId].classList.remove('active');
+  STATE.cards[deckId].drawn   = false;
+  STATE.cards[deckId].flipped = false;
+  renderCards();
+}
+
+// ── CARD MODAL ──
+
+function openCardModal(deckId) {
+  if (!STATE.cards[deckId].drawn) return;
+  STATE.cardModal = deckId;
+  cardFlipInner.style.transition = 'none';
+  cardFlipInner.classList.add('revealed');
+  void cardFlipInner.offsetWidth;
+  cardFlipInner.style.transition = '';
+  renderCardModal();
+}
+
+function closeCardModal() {
+  STATE.cardModal = null;
+  cardFlipInner.style.transition = 'none';
+  cardFlipInner.classList.remove('revealed');
+  void cardFlipInner.offsetWidth;
+  cardFlipInner.style.transition = '';
+  renderCardModal();
 }
 
 // ── DECK MENU ──
-function toggleDeckMenu(btn) {
-  const menu = btn.closest('.deck-menu');
-  const isOpen = menu.classList.contains('open');
+
+function toggleDeckMenu(deckId) {
+  const wasOpen = STATE.menus[deckId];
   closeDeckMenus();
-  if (!isOpen) menu.classList.add('open');
+  STATE.menus[deckId] = !wasOpen;
+  renderMenus();
 }
 
 function closeDeckMenus() {
-  document.querySelectorAll('.deck-menu.open').forEach(m => m.classList.remove('open'));
+  STATE.menus.daily     = false;
+  STATE.menus.economics = false;
+  renderMenus();
 }
 
 document.addEventListener('click', closeDeckMenus);
 
 // ── SHUFFLE ──
+
 function shuffleDeck(deckId) {
-  if (isAnimating) return;
+  if (STATE.animating) return;
   playSfx(SFX.shuffle, 0, 0.1);
   DECKS[deckId].shuffle();
   const stack = document.getElementById(`deckStack-${deckId}`);
   stack.classList.add('shuffling');
-  stack.addEventListener('animationend', () => stack.classList.remove('shuffling'), { once: true });
+  setTimeout(() => stack.classList.remove('shuffling'), DURATIONS.shuffle);
 }
 
 // ── INSPECT MODAL ──
+
 function openInspectModal(deckId) {
   const deck = DECKS[deckId];
   const ordered = [
@@ -145,9 +213,11 @@ function openInspectModal(deckId) {
   grid.innerHTML = ordered
     .map(c => `<img src="${c.imagePath}" alt="${c.id}">`)
     .join('');
-  document.getElementById('inspectModal').classList.add('active');
+  STATE.inspectModal = true;
+  renderInspectModal();
 }
 
 function closeInspectModal() {
-  document.getElementById('inspectModal').classList.remove('active');
+  STATE.inspectModal = false;
+  renderInspectModal();
 }
